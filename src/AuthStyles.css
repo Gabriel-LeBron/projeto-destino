@@ -1,0 +1,150 @@
+/* ---------------------------------------------------- */
+/* 1. LAYOUT PRINCIPAL (Centraliza formulário na tela) */
+/* ---------------------------------------------------- */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;    
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+/* ---------------------------------------------------- */
+/* 1.1. ESTILOS DE FUNDO ÚNICOS (CORRIGIDO!) */
+/* ---------------------------------------------------- */
+
+.auth-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;          
+    background-position: center;     
+    background-attachment: fixed; 
+}
+
+.login-page {
+    /* Fundo ÚNICO para Login */
+    background-image: url('../src/assets/fundoLogin.jpg'); 
+}
+
+.signup-page {
+    /* Fundo ÚNICO para Cadastro */
+    background-image: url('../src/assets/fundoCadastro.jpg');
+}
+
+
+/* ---------------------------------------------------- */
+/* 2. ESTILO DO CARTÃO (CARD) */
+/* ---------------------------------------------------- */
+
+.card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); 
+    width: 100%;
+    max-width: 400px; 
+    text-align: center;
+    z-index: 10;
+}
+
+.card h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+/* ---------------------------------------------------- */
+/* 3. ESTILO DO CAMPO INPUT */
+/* ---------------------------------------------------- */
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box; 
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* ---------------------------------------------------- */
+/* 4. ESTILO DOS BOTÕES */
+/* ---------------------------------------------------- */
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn.primary {
+    background-color: #2071b3ff;
+    color: white;
+}
+
+.btn.success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn.warning {
+    background-color: #ff7300;
+    color: white;
+}
+
+.btn.success:hover {
+    background-color: #1e7e34;
+}
+
+/* ---------------------------------------------------- */
+/* 5. ESTILO DO SWITCH */
+/* ---------------------------------------------------- */
+
+.switch {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.switch a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.switch a:hover {
+    text-decoration: underline;
+}
