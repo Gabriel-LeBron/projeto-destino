@@ -8,11 +8,11 @@ export default function Navbar() {
         DESTINO
       </Link>
       
-      <nav className='flex flex-wrap gap-4'>
+      <nav className='flex flex-wrap gap-7'>
         <Link to="/viagens" className='text-white font-medium hover:underline'>Viagens</Link>
         <Link to="/relatorios" className='text-white font-medium hover:underline'>Relatórios</Link>
         <Link to="/contato" className='text-white font-medium hover:underline'>Contato</Link>
-        <Link to="/login" className='text-(--navbar-blue-text) hover:underline'>Sair (Admin)</Link>
+        <Link to="/login" className='text-(--navbar-blue-text) hover:underline'> Username - SAIR</Link>
       </nav>
 
       <input className='text-lg bg-white text-black text-center 
