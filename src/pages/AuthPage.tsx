@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import PaulaViagens from "@/assets/PaulaViagensLogo.png"
+
 import CampoInput from "@/components/auth/CampoInput";
 
 export default function AuthPage() {
@@ -117,7 +119,7 @@ export default function AuthPage() {
         <div className="hidden md:flex w-1/2 items-center justify-center">
           <div className="w-80 h-80 bg-white/60 rounded-2xl shadow-md flex items-center justify-center">
             <img
-              src="src/assets/PaulaViagensLogo.png"
+              src={PaulaViagens}
               alt="Logo Paula Vigens"
               className="object-contain max-w-full max-h-full rounded-xl"
             />
