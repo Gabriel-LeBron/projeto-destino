@@ -60,70 +60,74 @@ export default function AuthPage() {
   }
 
   return (
-    <div className={`w-screen h-[100%] flex justify-center items-center bg-cover bg-center bg-fixed 
+    <div className={`h-screen w-screen
       ${isLogin 
         ? "bg-gradient-to-br from-[#e6f4ff] via-[#d6efff] to-[#cde8ff]" 
         : "bg-gradient-to-br from-[#fff4e6] via-[#ffe6cc] to-[#ffebd6]"
       }`}
     >
-      <FaArrowLeft size={32} className="absolute top-10 left-10 cursor-pointer" onClick={() => navigate('/')}/>
-      <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-5xl gap-8 p-4">
-        
-        
-        <div className="bg-white/95 p-10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.4)] w-full max-w-md text-center z-10 backdrop-blur-sm">
+      <div className="w-full h-[5%]">
+        <FaArrowLeft size={32} className="cursor-pointer" onClick={() => navigate('/')}/>
+      </div>
+      <div className="h-[95%] flex justify-center">
+        <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-5xl gap-8 p-4">
           
-          <h1 className="text-[#333] mb-8 text-3xl font-bold">{pageTitle}</h1>
           
-          <form onSubmit={handleSubmit}>
+          <div className="bg-white/95 p-10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.4)] w-full max-w-md text-center z-10 backdrop-blur-sm">
             
-            <CampoInput 
-              label="E-mail" 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
-            />
-            <CampoInput 
-              label="Senha" 
-              type="password" 
-              value={senha} 
-              onChange={(e) => setSenha(e.target.value)} 
-              required 
-            />
+            <h1 className="text-[#333] mb-8 text-3xl font-bold">{pageTitle}</h1>
             
-            {!isLogin && (
+            <form onSubmit={handleSubmit}>
+              
               <CampoInput 
-                label="Confirmar Senha" 
-                type="password" 
-                value={confirmar} 
-                onChange={(e) => setConfirmar(e.target.value)} 
+                label="E-mail" 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
                 required 
               />
-            )}
-            <button 
-              type="submit" 
-              className={`w-full py-3 rounded-lg cursor-pointer text-lg font-bold mt-3 transition duration-300 active:scale-[0.98] text-white ${buttonClasses}`}
-            >
-              {buttonText}
-            </button>
-          </form>
+              <CampoInput 
+                label="Senha" 
+                type="password" 
+                value={senha} 
+                onChange={(e) => setSenha(e.target.value)} 
+                required 
+              />
+              
+              {!isLogin && (
+                <CampoInput 
+                  label="Confirmar Senha" 
+                  type="password" 
+                  value={confirmar} 
+                  onChange={(e) => setConfirmar(e.target.value)} 
+                  required 
+                />
+              )}
+              <button 
+                type="submit" 
+                className={`w-full py-3 rounded-lg cursor-pointer text-lg font-bold mt-3 transition duration-300 active:scale-[0.98] text-white ${buttonClasses}`}
+              >
+                {buttonText}
+              </button>
+            </form>
 
-          <p className="mt-6 text-sm text-[#666]">
-            {switchText}
-            <Link to={switchLinkPath} className="text-[#007bff] no-underline font-bold hover:underline ml-1">
-              {switchLinkText}
-            </Link>
-          </p>
-        </div>
+            <p className="mt-6 text-sm text-[#666]">
+              {switchText}
+              <Link to={switchLinkPath} className="text-[#007bff] no-underline font-bold hover:underline ml-1">
+                {switchLinkText}
+              </Link>
+            </p>
+          </div>
 
-        
-        <div className="hidden md:flex w-1/2 items-center justify-center">
-          <div className="w-80 h-80 bg-white/60 rounded-2xl shadow-md flex items-center justify-center">
-            <img
-              src={logo}
-              alt="Logo Paula Vigens"
-              className="object-contain max-w-full max-h-full rounded-xl"
-            />
+          
+          <div className="hidden md:flex w-1/2 items-center justify-center">
+            <div className="w-80 h-80 bg-white/60 rounded-2xl shadow-md flex items-center justify-center">
+              <img
+                src={logo}
+                alt="Logo Paula Vigens"
+                className="object-contain max-w-full max-h-full rounded-xl"
+              />
+            </div>
           </div>
         </div>
       </div>
