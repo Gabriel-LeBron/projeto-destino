@@ -1,15 +1,9 @@
-import Navbar from "@/components/NavBar";
-import Footer from "@/components/Footer"; 
 import logo from "@/assets/PaulaViagensLogo.png";
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      
-      <Navbar />
-
-      
-      <section className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-20 gap-10">
+    <div className="h-[70%] flex flex-col bg-white">
+      <section className="h-[50%] flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-20 gap-10">
         
         <div className="flex flex-col space-y-6 md:w-1/2">
           <h1 className="text-4xl font-bold text-[#2071b3]">Fale Conosco</h1>
@@ -35,13 +29,13 @@ export default function ContactPage() {
           <img
             src={logo}
             alt="Equipe de atendimento"
-            className="max-w-[350px] rounded-xl shadow-lg object-contain"
+            className="max-w-[350px] rounded-xl shadow-lg object-contain p-2"
           />
         </div>
       </section>
 
       
-      <main className="flex flex-col items-center justify-center px-6 py-16 bg-gradient-to-br from-[#e6f4ff] via-[#d6efff] to-[#cde8ff]">
+      <main className="h-[50%] flex flex-col items-center justify-center px-6 py-16 bg-gradient-to-br from-[#e6f4ff] via-[#d6efff] to-[#cde8ff]">
         <h2 className="text-3xl font-bold text-[#1a5b8e] mb-10">
           Envie uma Mensagem
         </h2>
@@ -67,9 +61,6 @@ export default function ContactPage() {
           </div>
         </div>
       </main>
-
-      
-      <Footer />
     </div>
   );
 }

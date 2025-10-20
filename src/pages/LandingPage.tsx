@@ -1,6 +1,4 @@
-import Navbar from '@/components/NavBar'; 
 import Card from '@/components/landingPage/Card';
-import Footer from '@/components/Footer';
 
 import ubatubaImg from '@/assets/Ubatuba.jpg';
 import paratyImg from '@/assets/Paraty.jpg';
@@ -31,7 +29,6 @@ export default function LandingPage() {
 
   return (
     <div className='flex-col min-h-screen flex bg-gradient-to-br from-white to-sky-200'>
-      <Navbar /> 
       <main className='flex-grow h-fit justify-evenly flex-col p-4 pl-3 pr-3'>
         
         <section className="flex items-center flex-wrap pt-4">
@@ -76,9 +73,6 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
-     
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import logo from "@/assets/PaulaViagensLogo.png";
+
 import CampoInput from "@/components/auth/CampoInput";
 
 
@@ -57,7 +59,7 @@ export default function AuthPage() {
   }
 
   return (
-    <div className={`w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed 
+    <div className={`w-screen h-[70%] flex justify-center items-center bg-cover bg-center bg-fixed 
       ${isLogin 
         ? "bg-gradient-to-br from-[#e6f4ff] via-[#d6efff] to-[#cde8ff]" 
         : "bg-gradient-to-br from-[#fff4e6] via-[#ffe6cc] to-[#ffebd6]"
@@ -118,7 +120,7 @@ export default function AuthPage() {
         <div className="hidden md:flex w-1/2 items-center justify-center">
           <div className="w-80 h-80 bg-white/60 rounded-2xl shadow-md flex items-center justify-center">
             <img
-              src="src/assets/PaulaViagensLogo.png"
+              src={logo}
               alt="Logo Paula Vigens"
               className="object-contain max-w-full max-h-full rounded-xl"
             />

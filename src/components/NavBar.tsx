@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() { 
   return (
-    <header className='flex flex-wrap  items-center place-content-between py-[15px] px-[30px] bg-[var(--bg-color-orange)]'>
+    <header className='h-[5%] justi flex flex-wrap content-center items-center place-content-between py-[15px] px-[30px] bg-[var(--bg-color-orange)]'>
       
       <Link to="/" className="font-bold text-2xl text-white">
         DESTINO
