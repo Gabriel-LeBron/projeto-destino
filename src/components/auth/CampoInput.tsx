@@ -1,28 +1,37 @@
-import React from 'react';
+import React from "react";
 
 type InputChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
 interface CampoInputProps {
   label: string;
-  type: 'email' | 'password' | 'text';
+  type: "email" | "password" | "text";
   value: string;
   onChange: (e: InputChangeEvent) => void;
   required?: boolean;
+  minLength: number;
+  maxLength: number;
 }
 
-export default function CampoInput({ label, type, value, onChange, required = false }: CampoInputProps) {
+export default function CampoInput({
+  label,
+  type,
+  value,
+  onChange,
+  required = false,
+  minLength,
+  maxLength,
+}: CampoInputProps) {
   return (
-    <div className="mb-5 text-left"> 
-      
-      <label className="block mb-2 font-bold text-[#555]">
-        {label}
-      </label>
-      
-      <input 
-        type={type} 
-        value={value} 
-        onChange={onChange} 
-        required={required} 
+    <div className="mb-5 text-left">
+      <label className="block mb-2 font-bold text-[#555]">{label}</label>
+
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        minLength={minLength}
+        maxLength={maxLength}
         className="
           w-full px-4 py-3 
           border border-gray-300 rounded-lg text-base 
@@ -32,4 +41,4 @@ export default function CampoInput({ label, type, value, onChange, required = fa
       />
     </div>
   );
-};
+}
