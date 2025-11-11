@@ -12,6 +12,7 @@ import Cadastro from "./pages/auth/Cadastro";
 import Login from "./pages/auth/Login";
 import Viagem from "./pages/viagen/Viagem";
 import Relatorio from "./pages/relatorio/Relatorio";
+import Validar from "./pages/validar/validar";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: ROUTES.SIGNUP,
     element: <Cadastro />,
+  },
+  {
+    path: ROUTES.VALIDAR,
+    element: <Validar />,
   },
   {
     path: "*",

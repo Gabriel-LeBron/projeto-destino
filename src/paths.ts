@@ -5,4 +5,5 @@ export const ROUTES = {
   RELATORIO: "/relatorio",
   LOGIN: "/login",
   SIGNUP: "/cadastro",
+  VALIDAR: "/validar",
 } as const;

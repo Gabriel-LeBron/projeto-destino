@@ -1,6 +1,18 @@
 import { useSession } from "@/store/usuarioStore";
 
 export interface Usuario {
+  id: string;
+  nome: string;
+  cpf: string;
+  email: string;
+  telefone: string;
+  perfil: string;
+  valido: boolean;
+  atualização: string;
+  cadastro: string;
+}
+
+export interface RegistroUser {
   nome?: string;
   sobreNome?: string;
   cpf?: string;
@@ -15,7 +27,7 @@ interface RegistrationResponse {
 }
 
 export const cadastrarUsuario = async (
-  usuario: Usuario | null
+  usuario: RegistroUser | null
 ): Promise<RegistrationResponse> => {
   if (usuario) {
     try {
@@ -88,5 +100,72 @@ export const logout = async (): Promise<string> => {
     return result;
   } catch (error: unknown) {
     return "erro";
+  }
+};
+
+export interface InvalidUsersResponse {
+  error: boolean;
+  mensagem: string;
+  users: Usuario[] | null;
+}
+
+export const listInvalidUsers = async (): Promise<InvalidUsersResponse> => {
+  try {
+    const response = await fetch(
+      "https://localhost:8080/api/auth/usuarios/invalidos",
+      {
+        credentials: "include",
+      }
+    );
+
+    if (!response.ok) {
+      return {
+        error: true,
+        mensagem: "Não foi possivel chamar a API",
+        users: null,
+      };
+    }
+
+    const result: Usuario[] = await response.json();
+    if (result.length > 0) {
+      return {
+        error: false,
+        mensagem: "Nenhum usuários encontrado para validação!",
+        users: result,
+      };
+    }
+    return { error: false, mensagem: "Usuários encontrados!", users: result };
+  } catch (error: unknown) {
+    return { error: true, mensagem: "Erro inesperado!", users: null };
+  }
+};
+
+export interface ValidarUsuarioResponse {
+  error: boolean;
+  mensagem: string;
+}
+
+export const ValidarUsuario = async (
+  userId: string
+): Promise<ValidarUsuarioResponse> => {
+  try {
+    const response = await fetch(
+      `https://localhost:8080/api/auth/usuarios/validar/${userId}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+      }
+    );
+
+    if (!response.ok) {
+      return {
+        error: true,
+        mensagem: "Não foi possivel chamar a API",
+      };
+    }
+
+    return await response.json();
+  } catch (error: unknown) {
+    return { error: true, mensagem: "Erro inesperado!" };
   }
 };
