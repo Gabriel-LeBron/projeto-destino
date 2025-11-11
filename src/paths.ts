@@ -6,4 +6,5 @@ export const ROUTES = {
   LOGIN: "/login",
   SIGNUP: "/cadastro",
   VALIDAR: "/validar",
+  VIAGENS_CADASTRADAS: "/viagens-cadastradas",
 } as const;

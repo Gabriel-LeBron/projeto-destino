@@ -35,6 +35,13 @@ export default function LandingPage() {
         "O santuário ecológico mais desejado. Mergulhe nas águas cristalinas da Baía do Sancho e nade com a rica vida marinha. Golfinhos, tartarugas e paisagens icônicas como o Morro do Pico. A viagem dos seus sonhos é real!",
       imageUrl: noronhaImg,
     },
+    {
+      id: 4,
+      title: "Petrolina - PE",
+      description:
+        "O santuário ecológico mais desejado. Mergulhe nas águas cristalinas da Baía do Sancho e nade com a rica vida marinha. Golfinhos, tartarugas e paisagens icônicas como o Morro do Pico. A viagem dos seus sonhos é real!",
+      imageUrl: noronhaImg,
+    },
   ];
 
   return (
