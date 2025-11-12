@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import PaulaViagens from "@/assets/PaulaViagensLogo.png";
+import PaulaViagens from "/assets/PaulaViagensLogo.png";
 
 export default function AuthLogo() {
   return (

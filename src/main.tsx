@@ -11,10 +11,9 @@ import App from "./App";
 import Cadastro from "./pages/auth/Cadastro";
 import Login from "./pages/auth/Login";
 import Viagem from "./pages/viagen/Viagem";
-import ViagensCadastradas from "./pages/ViagenCadastradas/ViagensCadastradas";
-import Relatorio from "./pages/relatorio/Relatorio";
-import Validar from "./pages/validar/validar";
-
+import ViagensCadastradas from "./pages/relatorio/ViagensCadastradas";
+import Relatorio from "./pages/relatorio/Dashboard";
+import Validar from "./pages/validar/Validar";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +33,7 @@ const router = createBrowserRouter([
         element: <Viagem />,
       },
       {
-        path: ROUTES.VIAGENS_CADASTRADAS, // ← NOVA ROTA
+        path: ROUTES.VIAGENS_CADASTRADAS,
         element: <ViagensCadastradas />,
       },
       {

@@ -2,9 +2,9 @@ export const ROUTES = {
   LANDINGPAGE: "/",
   CONTATO: "/contato",
   VIAGEM: "/viagem",
-  RELATORIO: "/relatorio",
+  RELATORIO: "/relatorio/dashboard",
+  VIAGENS_CADASTRADAS: "/relatorio/viagens-cadastradas",
   LOGIN: "/login",
   SIGNUP: "/cadastro",
   VALIDAR: "/validar",
-  VIAGENS_CADASTRADAS: "/viagens-cadastradas",
 } as const;

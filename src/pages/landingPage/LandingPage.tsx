@@ -1,52 +1,45 @@
+import { useEffect, useState } from "react";
+
 import Card from "@/components/landingPage/Card";
 
-import ubatubaImg from "@/assets/Ubatuba.jpg";
-import paratyImg from "@/assets/Paraty.jpg";
-import noronhaImg from "@/assets/Noronha.jpg";
-import destaqueImage from "@/assets/Destaque.jpg";
+import destaqueImage from "/assets/Destaque.jpg";
 
 interface CardProps {
   id: number;
   title: string;
   description: string;
-  imageUrl: any;
+  imageUrl: string;
 }
 
 export default function LandingPage() {
-  const packagesData: CardProps[] = [
-    {
-      id: 1,
-      title: "Ubatuba - SP",
-      description:
-        "Mais de 100 praias entre a Mata Atlântica e o mar. De enseadas desertas à badalada Ilha Anchieta, Ubatuba é a combinação perfeita de aventura, natureza e sossego no litoral norte paulista. Seu refúgio caiçara te espera!",
-      imageUrl: ubatubaImg,
-    },
-    {
-      id: 2,
-      title: "Paraty - RJ",
-      description:
-        "Charme colonial e história viva nas ruas de pedra. Explore o Centro Histórico, descubra cachoeiras na Bocaina e navegue pelas ilhas paradisíacas. Uma viagem única onde arte e natureza se encontram no Rio de Janeiro. Volte no tempo com estilo!",
-      imageUrl: paratyImg,
-    },
-    {
-      id: 3,
-      title: "Fernando de Noronha - PE",
-      description:
-        "O santuário ecológico mais desejado. Mergulhe nas águas cristalinas da Baía do Sancho e nade com a rica vida marinha. Golfinhos, tartarugas e paisagens icônicas como o Morro do Pico. A viagem dos seus sonhos é real!",
-      imageUrl: noronhaImg,
-    },
-    {
-      id: 4,
-      title: "Petrolina - PE",
-      description:
-        "O santuário ecológico mais desejado. Mergulhe nas águas cristalinas da Baía do Sancho e nade com a rica vida marinha. Golfinhos, tartarugas e paisagens icônicas como o Morro do Pico. A viagem dos seus sonhos é real!",
-      imageUrl: noronhaImg,
-    },
-  ];
+  const [pacotes, setPacotes] = useState<CardProps[]>([]);
+
+  const getPacotes = async () => {
+    try {
+      const response = await fetch("/json/pacotes.json");
+
+      if (!response.ok) {
+        throw new Error(
+          `Erro HTTP: Status ${response.status}. Verifique o caminho`
+        );
+      }
+
+      const data: CardProps[] = await response.json();
+
+      setPacotes(data);
+    } catch (err) {
+      console.error("Falha ao carregar dados dos cards:", err);
+      setPacotes([]);
+    }
+  };
+
+  useEffect(() => {
+    getPacotes();
+  }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-white to-sky-200">
-      <main className="flex-grow p-4 md:p-8">
+    <div className="flex flex-col min-h-screen bg-linear-to-br from-white to-sky-200">
+      <main className="grow p-4 md:p-8">
         <section className="flex flex-wrap items-center pt-4 gap-8">
           <div className="flex flex-col w-full xl:w-[48%] mb-4">
             <h1 className="text-center md:text-left text-4xl lg:text-5xl font-extrabold mb-4 px-4">
@@ -86,7 +79,7 @@ export default function LandingPage() {
             Confira Nossos Pacotes
           </h2>
           <div className="flex justify-center gap-6 flex-wrap px-4">
-            {packagesData.map((data) => (
+            {pacotes.map((data) => (
               <Card
                 key={data.id}
                 title={data.title}

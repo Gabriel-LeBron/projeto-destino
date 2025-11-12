@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Ubatuba - SP",
+    "description": "Mais de 100 praias entre a Mata Atlântica e o mar. De enseadas desertas à badalada Ilha Anchieta, Ubatuba é a combinação perfeita de aventura, natureza e sossego no litoral norte paulista. Seu refúgio caiçara te espera!",
+    "imageUrl": "/assets/ubatuba.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Paraty - RJ",
+    "description": "Charme colonial e história viva nas ruas de pedra. Explore o Centro Histórico, descubra cachoeiras na Bocaina e navegue pelas ilhas paradisíacas. Uma viagem única onde arte e natureza se encontram no Rio de Janeiro. Volte no tempo com estilo!",
+    "imageUrl": "/assets/paraty.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Fernando de Noronha - PE",
+    "description": "O santuário ecológico mais desejado. Mergulhe nas águas cristalinas da Baía do Sancho e nade com a rica vida marinha. Golfinhos, tartarugas e paisagens icônicas como o Morro do Pico. A viagem dos seus sonhos é real!",
+    "imageUrl": "/assets/noronha.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Petrolina - PE",
+    "description": "O santuário ecológico mais desejado. Mergulhe nas águas cristalinas da Baía do Sancho e nade com a rica vida marinha. Golfinhos, tartarugas e paisagens icônicas como o Morro do Pico. A viagem dos seus sonhos é real!",
+    "imageUrl": "/assets/noronha.jpg"
+  }
+]
