@@ -66,7 +66,7 @@ export default function Cadastro() {
               maxLength={20}
             />
             <CampoInput
-              label="SobreNome"
+              label="Sobrenome"
               type="text"
               value={usuario?.sobreNome}
               onChange={(e) => montarUsuario("sobreNome", e.target.value)}
@@ -75,7 +75,7 @@ export default function Cadastro() {
               maxLength={20}
             />
             <CampoInput
-              label="cpf"
+              label="CPF"
               type="text"
               value={usuario?.cpf}
               onChange={(e) => montarUsuario("cpf", e.target.value)}
