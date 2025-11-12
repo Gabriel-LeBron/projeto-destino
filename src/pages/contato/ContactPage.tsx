@@ -1,4 +1,4 @@
-import logo from "/assets/PaulaViagensLogo.png";
+import logo from "/assets/paulaViagensLogo.png";
 
 export default function ContactPage() {
   return (
@@ -39,7 +39,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <main className="h-[50%] flex flex-col items-center justify-center px-6 py-16 bg-gradient-to-br from-[#e6f4ff] via-[#d6efff] to-[#cde8ff]">
+      <main className="h-[50%] flex flex-col items-center justify-center px-6 py-16 bg-linear-to-br from-[#e6f4ff] via-[#d6efff] to-[#cde8ff]">
         <h2 className="text-3xl font-bold text-[#1a5b8e] mb-10">
           Envie uma Mensagem
         </h2>

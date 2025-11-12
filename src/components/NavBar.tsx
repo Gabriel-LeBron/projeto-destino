@@ -12,10 +12,7 @@ export default function Navbar() {
 
   return (
     <header className="flex flex-wrap  items-center place-content-between py-[15px] px-[30px] bg-(--bg-color-orange)">
-      <Link
-        to={ROUTES.LANDINGPAGE}
-        className="font-bold text-2xl text-(--navbar-blue-text)"
-      >
+      <Link to={ROUTES.LANDINGPAGE} className="font-bold text-2xl text-white">
         DESTINO
       </Link>
 

@@ -38,7 +38,7 @@ export default function Cadastro() {
 
   return (
     <div
-      className={`w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed 
+      className={`bg-[url('/assets/fundoCadastro.jpg')] w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed 
       "bg-gradient-to-br from-[#fff4e6] via-[#ffe6cc] to-[#ffebd6]"
       }`}
     >

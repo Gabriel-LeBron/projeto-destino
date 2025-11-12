@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import Card from "@/components/landingPage/Card";
 
-import destaqueImage from "/assets/Destaque.jpg";
+import destaqueImage from "/assets/destaque.jpg";
 
 interface CardProps {
   id: number;

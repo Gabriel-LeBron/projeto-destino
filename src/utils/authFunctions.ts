@@ -3,6 +3,7 @@ import { useSession } from "@/store/usuarioStore";
 export interface Usuario {
   id: string;
   nome: string;
+  sobreNome: string;
   cpf: string;
   email: string;
   telefone: string;
