@@ -39,7 +39,7 @@ export default function Login() {
 
   return (
     <div
-      className={`bg-[url('/assets/fundoLogin.jpg')] w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed 
+      className={` w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed 
       "bg-gradient-to-br from-[#e6f4ff] via-[#d6efff] to-[#cde8ff]"
       }`}
     >

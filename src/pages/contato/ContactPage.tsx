@@ -1,4 +1,4 @@
-import logo from "/assets/paulaViagensLogo.png";
+import logo from "/assets/paulaViagensLogo.jpg";
 
 export default function ContactPage() {
   return (

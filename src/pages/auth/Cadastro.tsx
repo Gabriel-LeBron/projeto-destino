@@ -38,7 +38,7 @@ export default function Cadastro() {
 
   return (
     <div
-      className={`bg-[url('/assets/fundoCadastro.jpg')] w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed 
+      className={` w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed 
       "bg-gradient-to-br from-[#fff4e6] via-[#ffe6cc] to-[#ffebd6]"
       }`}
     >
@@ -62,7 +62,7 @@ export default function Cadastro() {
               maxLength={20}
             />
             <CampoInput
-              label="SobreNome"
+              label="Sobrenome"
               type="text"
               value={usuario?.sobreNome}
               onChange={(e) =>
@@ -73,7 +73,7 @@ export default function Cadastro() {
               maxLength={20}
             />
             <CampoInput
-              label="cpf"
+              label="CPF"
               type="text"
               value={usuario?.cpf}
               onChange={(e) =>
