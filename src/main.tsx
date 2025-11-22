@@ -14,6 +14,7 @@ import Viagem from "./pages/viagen/Viagem";
 import ViagensCadastradas from "./pages/relatorio/ViagensCadastradas";
 import Relatorio from "./pages/relatorio/Dashboard";
 import Validar from "./pages/validar/Validar";
+import ProductPage from "./pages/produto/productPage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         path: ROUTES.RELATORIO,
         element: <Relatorio />,
       },
+      {
+        path: ROUTES.PRODUCT,
+        element: <ProductPage />,
+      }
     ],
   },
   {

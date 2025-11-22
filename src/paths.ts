@@ -7,4 +7,5 @@ export const ROUTES = {
   LOGIN: "/login",
   SIGNUP: "/cadastro",
   VALIDAR: "/validar",
+  PRODUCT: "/produto",
 } as const;

@@ -19,7 +19,8 @@ export default function ViagensCadastradas() {
   };
 
   const handleVisualizar = (viagemId: number) => {
-    console.log("Visualizando viagem:", viagemId);
+    // Quando formos implementar a integração com ID, o navigate vai ficar // navigate(`${ROUTES.PRODUCT}/${viagemId}`);
+    navigate(ROUTES.PRODUCT);
   };
 
   return (
