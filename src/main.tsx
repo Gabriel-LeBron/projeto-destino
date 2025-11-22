@@ -15,6 +15,8 @@ import ViagensCadastradas from "./pages/relatorio/ViagensCadastradas";
 import Relatorio from "./pages/relatorio/Dashboard";
 import Validar from "./pages/validar/Validar";
 import ProductPage from "./pages/produto/productPage";
+import CadastrarViagem from "./pages/relatorio/CadastrarViagem";
+
 
 const router = createBrowserRouter([
   {
@@ -44,7 +46,11 @@ const router = createBrowserRouter([
       {
         path: ROUTES.PRODUCT,
         element: <ProductPage />,
-      }
+      },
+     {
+        path: ROUTES.CADASTRAR_VIAGEM,
+        element: <CadastrarViagem />,
+      },
     ],
   },
   {

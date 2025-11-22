@@ -62,7 +62,7 @@ export default function ViagensCadastradas() {
           <h1 className="text-2xl font-bold text-gray-900">
             Viagens Cadastradas
           </h1>
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          <button onClick={() => navigate(ROUTES.CADASTRAR_VIAGEM)}className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
             Cadastrar Viagem
           </button>
         </div>
