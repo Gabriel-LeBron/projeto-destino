@@ -8,4 +8,5 @@ export const ROUTES = {
   SIGNUP: "/cadastro",
   VALIDAR: "/validar",
   PRODUCT: "/produto",
+  CADASTRAR_VIAGEM: "/Cadastrar-Viagem",
 } as const;
