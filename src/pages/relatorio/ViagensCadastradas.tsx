@@ -15,8 +15,11 @@ export default function ViagensCadastradas() {
   };
 
   const handleEditar = (viagemId: number) => {
-    console.log("Editando viagem:", viagemId);
-  };
+  
+  navigate(ROUTES.CADASTRAR_VIAGEM, { 
+    state: { editar: true } 
+  });
+};
 
   const handleVisualizar = (viagemId: number) => {
     // Quando formos implementar a integração com ID, o navigate vai ficar // navigate(`${ROUTES.PRODUCT}/${viagemId}`);

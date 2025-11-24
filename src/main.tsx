@@ -14,9 +14,12 @@ import Viagem from "./pages/viagen/Viagem";
 import ViagensCadastradas from "./pages/relatorio/ViagensCadastradas";
 import Relatorio from "./pages/relatorio/Dashboard";
 import Validar from "./pages/validar/Validar";
-import ProductPage from "./pages/produto/productPage";
+import ProductPage from "./pages/produto/ProductPage";
 import CadastrarViagem from "./pages/relatorio/CadastrarViagem";
-
+import VisualizarViagem from "./pages/viagen/VisualizarViagem";
+import BuscarViagens from "./pages/Busca/BuscarViagem";
+import CheckoutPage from "./pages/Checkout/CheckoutPage";
+import ConfirmacaoPage from "./pages/Checkout/Confirmacao";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,22 @@ const router = createBrowserRouter([
      {
         path: ROUTES.CADASTRAR_VIAGEM,
         element: <CadastrarViagem />,
+      },
+      {
+        path: `${ROUTES.VIAGEM}/visualizar`,
+        element: <VisualizarViagem />,
+      },
+      {
+        path: ROUTES.BUSCAR_VIAGEM,
+        element: <BuscarViagens />,
+      },
+      {
+        path: ROUTES.CHECKOUT,
+        element: <CheckoutPage />,
+      },
+      {
+        path: ROUTES.CONFIRMACAO,
+        element: <ConfirmacaoPage />,
       },
     ],
   },
