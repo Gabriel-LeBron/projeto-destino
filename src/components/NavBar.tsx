@@ -1,14 +1,30 @@
 import { ROUTES } from "@/paths";
 import { useSession } from "@/store/usuarioStore";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [user, setUser] = useState<string | null>();
+  const [termoBusca, setTermoBusca] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUser(useSession.getState().email);
   }, []);
+
+  const handleBuscar = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (termoBusca.trim()) {
+      navigate(`${ROUTES.BUSCAR_VIAGEM}?q=${encodeURIComponent(termoBusca)}`);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleBuscar(e);
+    }
+  };
 
   return (
     <header className="flex flex-wrap  items-center place-content-between py-[15px] px-[30px] bg-(--bg-color-orange)">
@@ -58,13 +74,18 @@ export default function Navbar() {
         )}
       </nav>
 
-      <input
-        className="text-lg bg-white text-black text-center 
-      placeholder-black
-      border-solid rounded-xl outline-2 border-b-neutral-100"
-        type="search"
-        placeholder="Buscar no site..."
-      />
+      <form onSubmit={handleBuscar}>
+        <input
+          className="text-lg bg-white text-black text-center 
+          placeholder-black
+          border-solid rounded-xl outline-2 border-b-neutral-100"
+          type="search"
+          placeholder="Buscar no site..."
+          value={termoBusca}
+          onChange={(e) => setTermoBusca(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
+      </form>
     </header>
   );
 }

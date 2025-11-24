@@ -1,9 +1,20 @@
 import Card from "@/components/landingPage/Card";
 import destaqueImage from "/assets/destaque.jpg";
 import { usePacotes } from "@/utils/buscarFunctions";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/paths";
 
 export default function LandingPage() {
   const { pacotes } = usePacotes();
+  const navigate = useNavigate();
+
+  const handleComecePlanejar = () => {
+    navigate(ROUTES.BUSCAR_VIAGEM);
+  };
+
+  const handleSaibaMais = () => {
+    navigate(ROUTES.PRODUCT);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-linear-to-br from-white to-sky-200">
@@ -25,7 +36,10 @@ export default function LandingPage() {
             </div>
 
             <div className="px-4 md:px-8 flex justify-center md:justify-start mt-6">
-              <button className="bg-[#2071b3] text-white py-3 px-8 rounded-lg shadow-lg transition duration-300 hover:bg-blue-800">
+              <button 
+                onClick={handleComecePlanejar}
+                className="bg-[#2071b3] text-white py-3 px-8 rounded-lg shadow-lg transition duration-300 hover:bg-blue-800"
+              >
                 Comece a Planejar
               </button>
             </div>
@@ -48,12 +62,13 @@ export default function LandingPage() {
           </h2>
           <div className="flex justify-center gap-6 flex-wrap px-4">
             {pacotes.map((data) => (
-              <Card
-                key={data.id}
-                title={data.title}
-                description={data.description}
-                imageUrl={data.imageUrl}
-              />
+              <div key={data.id} onClick={handleSaibaMais} className="cursor-pointer">
+                <Card
+                  title={data.title}
+                  description={data.description}
+                  imageUrl={data.imageUrl}
+                />
+              </div>
             ))}
           </div>
         </section>

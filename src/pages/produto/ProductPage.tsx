@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom'; 
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ROUTES } from '@/paths';
+
 
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
+  const navigate = useNavigate();
   const [numeroPessoas, setNumeroPessoas] = useState<number>(1);
   
-  // Dados no Hardcode mesmo depois é só substituir por API call
+  // Dados no Hardcode - Trocar para uma API call durante a integraçã
   const produto = {
     id: id || '1',
     nome: 'Pacote Premium Fernando de Noronha',
@@ -43,8 +46,8 @@ const ProductPage: React.FC = () => {
   };
 
   const handleComprar = () => {
-    alert(`Compra realizada para ${numeroPessoas} pessoa(s)! Total: ${formatarPreco(calcularPrecoTotal())}`);
     
+    navigate(ROUTES.CHECKOUT);
   };
 
   return (
@@ -68,16 +71,7 @@ const ProductPage: React.FC = () => {
             <li>
               <span className="text-gray-600 font-medium">{produto.destino}</span>
             </li>
-            {!id && (
-              <>
-                <li>
-                  <span className="text-gray-300">/</span>
-                </li>
-                <li>
-                  <span className="text-yellow-600 font-medium">(Modo Demonstração)</span>
-                </li>
-              </>
-            )}
+            
           </ol>
         </nav>
 
@@ -195,7 +189,7 @@ const ProductPage: React.FC = () => {
                 )}
               </div>
 
-              
+              {/* Botão Comprar */}
               <button
                 onClick={handleComprar}
                 className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-200 transform hover:scale-105 shadow-lg"

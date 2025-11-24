@@ -9,4 +9,7 @@ export const ROUTES = {
   VALIDAR: "/validar",
   PRODUCT: "/produto",
   CADASTRAR_VIAGEM: "/Cadastrar-Viagem",
+  BUSCAR_VIAGEM: "/buscar-viagem",
+  CHECKOUT: "/checkout",
+  CONFIRMACAO: "/confirmacao",
 } as const;
