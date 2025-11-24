@@ -14,12 +14,13 @@ export const useViagens = () => {
   useEffect(() => {
     const carregarViagens = async () => {
       try {
-        const response = await fetch("/json/viagens.json");
-        const resuilt = await response.json();
-        setViagens(resuilt);
+        const response = await fetch("/api/pacote/viagens");
+        const result = await response.json();
+        console.log(result);
+        setViagens(result);
       } catch (error) {
         console.error("Erro ao carregar os dados do JSON:", error);
-        throw new Error(`Não foi possível carregar as viagens do arquivo.`);
+        throw new Error(`Não foi possível carregar as viagens.`);
       }
     };
     carregarViagens();
