@@ -24,7 +24,7 @@ export default function LandingPage() {
         const response = await fetch("/api/pacote"); // Endpoint público
         if (response.ok) {
           const data = await response.json();
-          setPacotes(data);
+          setPacotes(data.content);
         }
       } catch (error) {
         console.error("Erro ao buscar pacotes da API", error);

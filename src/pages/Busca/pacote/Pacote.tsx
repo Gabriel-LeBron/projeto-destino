@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
+import placeholder from "/placeholder.jpg";
 
 // Interfaces baseadas no retorno do seu Backend
 interface Foto {
@@ -57,7 +58,8 @@ export default function Pacote() {
         .then((data) => {
           setPacote(data);
           // Define a imagem principal inicial
-          if (data.fotosDoPacote) {
+          if (data.fotosDoPacote || data.fotosDoPacote != "") {
+            console.log(data.fotosDoPacote);
             setImagemSelecionada(data.fotosDoPacote.fotoDoPacote);
           }
           setLoading(false);
@@ -171,7 +173,9 @@ export default function Pacote() {
                 onClick={() => setModalAberto(true)}
               >
                 <img
-                  src={imagemSelecionada}
+                  src={
+                    imagemSelecionada != "" ? imagemSelecionada : placeholder
+                  }
                   alt={pacote.nome}
                   className="w-full h-96 object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
                 />

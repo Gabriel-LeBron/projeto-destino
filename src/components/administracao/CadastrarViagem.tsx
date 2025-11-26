@@ -116,12 +116,7 @@ export default function CadastrarViagem() {
   };
 
   const handleSalvar = async () => {
-    if (
-      !formData.nome.trim() ||
-      !formData.hotelId ||
-      !formData.transporteId ||
-      !formData.pacoteFotoId
-    ) {
+    if (!formData.nome.trim() || !formData.hotelId || !formData.transporteId) {
       alert("Preencha Nome, Hotel, Transporte e Pacote de Fotos.");
       return;
     }
