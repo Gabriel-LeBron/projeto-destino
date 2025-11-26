@@ -43,98 +43,100 @@ export default function Cadastro() {
   };
 
   return (
-    <div
-      className={
-        "w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed bg-linear-to-br from-[#fff6ea] via-[#ffffff] to-[#fff6ea]"
-      }
-    >
-      <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-5xl gap-8 p-4">
-        <div
-          className="bg-white/95 p-10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.4)] w-full max-w-md 
-        text-center z-10 backdrop-blur-sm"
-        >
-          <h1 className="text-[#333] mb-8 text-3xl font-bold">Cadastre-se</h1>
+    <div className="w-screen h-screen flex justify-center items-center bg-cover bg-center bg-fixed bg-linear-to-br from-[#fff6ea] via-[#ffffff] to-[#fff6ea]">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl gap-2">
+        {/* Alterado p-6 para p-4 para reduzir altura do container */}
+        <div className="bg-white/95 p-4 rounded-xl shadow-[0_6px_15px_rgba(0,0,0,0.25)] w-full max-w-sm text-center z-5 backdrop-blur-sm">
+          <h1 className="text-[#333] mb-2 text-xg font-bold">Cadastre-se</h1>
 
           <form onSubmit={handleSubmit}>
-            <CampoInput
-              label="Nome"
-              type="text"
-              value={usuario?.nome}
-              onChange={(e) => montarUsuario("nome", e.target.value)}
-              required
-              minLength={3}
-              maxLength={20}
-            />
-            <CampoInput
-              label="Sobrenome"
-              type="text"
-              value={usuario?.sobreNome}
-              onChange={(e) => montarUsuario("sobreNome", e.target.value)}
-              required
-              minLength={3}
-              maxLength={20}
-            />
-            <CampoInput
-              label="CPF"
-              type="text"
-              value={usuario?.cpf}
-              onChange={(e) => montarUsuario("cpf", e.target.value)}
-              required
-              minLength={8}
-              maxLength={100}
-            />
-            <CampoInput
-              label="E-mail"
-              type="email"
-              value={usuario?.email}
-              onChange={(e) => montarUsuario("email", e.target.value)}
-              required
-              minLength={3}
-              maxLength={100}
-            />
-            <CampoInput
-              label="Telefone"
-              type="text"
-              value={usuario?.telefone}
-              onChange={(e) => montarUsuario("telefone", e.target.value)}
-              required
-              minLength={3}
-              maxLength={100}
-            />
-            <CampoInput
-              label="Senha"
-              type="password"
-              value={usuario?.senha}
-              onChange={(e) => montarUsuario("senha", e.target.value)}
-              required
-              minLength={8}
-              maxLength={100}
-            />
-            <CampoInput
-              label="SenhaConfirmar"
-              type="password"
-              value={confirmarSenha}
-              onChange={(e) => setConfirmarSenha(e.target.value)}
-              required
-              minLength={8}
-              maxLength={100}
-            />
+            {/* Grid layout para colocar campos lado a lado */}
+            <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-left">
+              <CampoInput
+                label="Nome"
+                type="text"
+                value={usuario?.nome}
+                onChange={(e) => montarUsuario("nome", e.target.value)}
+                required
+                minLength={3}
+                maxLength={20}
+              />
+              <CampoInput
+                label="Sobrenome"
+                type="text"
+                value={usuario?.sobreNome}
+                onChange={(e) => montarUsuario("sobreNome", e.target.value)}
+                required
+                minLength={3}
+                maxLength={20}
+              />
+              
+              <CampoInput
+                label="CPF"
+                type="text"
+                value={usuario?.cpf}
+                onChange={(e) => montarUsuario("cpf", e.target.value)}
+                required
+                minLength={8}
+                maxLength={100}
+              />
+              <CampoInput
+                label="Telefone"
+                type="text"
+                value={usuario?.telefone}
+                onChange={(e) => montarUsuario("telefone", e.target.value)}
+                required
+                minLength={3}
+                maxLength={100}
+              />
+              
+              {/* O Email ocupa as duas colunas */}
+              <div className="col-span-2">
+                <CampoInput
+                  label="E-mail"
+                  type="email"
+                  value={usuario?.email}
+                  onChange={(e) => montarUsuario("email", e.target.value)}
+                  required
+                  minLength={3}
+                  maxLength={100}
+                />
+              </div>
+
+              <CampoInput
+                label="Senha"
+                type="password"
+                value={usuario?.senha}
+                onChange={(e) => montarUsuario("senha", e.target.value)}
+                required
+                minLength={8}
+                maxLength={100}
+              />
+              <CampoInput
+                label="Confirmar Senha" // Abreviei o label para caber melhor
+                type="password"
+                value={confirmarSenha}
+                onChange={(e) => setConfirmarSenha(e.target.value)}
+                required
+                minLength={8}
+                maxLength={100}
+              />
+            </div>
 
             <button
               type="button"
               onClick={() => handleSubmit()}
-              className={`w-full py-3 rounded-lg cursor-pointer text-lg font-bold mt-3 
-                transition duration-300 active:scale-[0.98] text-white bg-[#ff7300] hover:bg-[#cc5c00]`}
+              className="w-full py-1.5 rounded-md cursor-pointer text-sm font-semibold mt-3 transition duration-300 active:scale-[0.98] text-white bg-[#ff7300] hover:bg-[#cc5c00]"
             >
               Cadastre-se
             </button>
           </form>
 
-          <p className="mt-6 text-sm text-[#666]">
+          <p className="mt-2 text-xg text-[#666]">
             Já tem conta?
             <Link
               to={"/login"}
-              className="text-[#007bff] no-underline font-bold hover:underline ml-1"
+              className="text-[#007bff] no-underline font-semibold hover:underline ml-1"
             >
               Fazer login
             </Link>

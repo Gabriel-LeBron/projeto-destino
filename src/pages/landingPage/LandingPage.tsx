@@ -10,7 +10,7 @@ interface PacoteDisplay {
   nome: string;
   descricao: string;
   fotosDoPacote: {
-    fotoDoPacote: string; // URL da imagem principal
+  fotoDoPacote: string; // URL da imagem principal
   };
 }
 
@@ -34,7 +34,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-linear-to-br from-white to-sky-200">
+    <div className="flex flex-col min-h-screen bg-linear-to-br from-sky-200 to-sky-100">
       <main className="grow p-4 md:p-8">
         <section className="flex flex-wrap items-center pt-4 gap-8">
           <div className="flex flex-col w-full xl:w-[48%] mb-4">
@@ -59,7 +59,7 @@ export default function LandingPage() {
           </div>
           <div className="flex justify-center w-full xl:w-[48%] mt-8 xl:mt-0">
             <img
-              className="rounded-2xl w-full max-w-lg shadow-xl"
+              className="rounded-3xl w-full max-w-lgg shadow-xl"
               src={destaqueImage}
               alt="Destaque"
             />
@@ -69,7 +69,7 @@ export default function LandingPage() {
         <hr className="my-9 border-t-2 border-sky-300/50" />
 
         <section className="mt-7">
-          <h2 className="text-center text-3xl font-bold mb-9">
+          <h2 className="text-center text-4xl font-bold mb-9">
             Confira Nossos Pacotes
           </h2>
           <div className="flex justify-center gap-6 flex-wrap px-4">

@@ -27,33 +27,30 @@ export default function Navbar() {
   };
 
   return (
-    <header className="flex flex-wrap  items-center place-content-between py-[15px] px-[30px] bg-(--bg-color-orange)">
-      <Link to={ROUTES.LANDINGPAGE} className="font-bold text-2xl text-white">
+    <header className="flex flex-wrap items-center place-content-between py-[15px] px-[30px] bg-[#ff944d]">
+      <Link
+        to={ROUTES.LANDINGPAGE}
+        className="font-bold text-3xl text-white pl-15"
+      >
         DESTINO
       </Link>
 
-      <nav className="flex flex-wrap gap-7">
-        {/*<Link
-          to={ROUTES.VIAGEM}
-          className="text-white font-medium hover:underline"
-        >
-          Viagens
-        </Link>*/}
+      <nav className="flex flex-wrap gap-10 pr-20 pl-10 text-xl">
         <Link
           to={ROUTES.RELATORIO}
-          className="text-white font-medium hover:underline"
+          className="text-white hover:text-[#2071b3]"
         >
           Administração
         </Link>
         <Link
           to={ROUTES.CONTATO}
-          className="text-white font-medium hover:underline"
+          className="text-white hover:text-[#2071b3]"
         >
           Contato
         </Link>
         {user ? (
           <div>
-            <span className="text-white font-medium">Usuário: {user} | </span>
+            <span className="text-white">Usuário: {user} | </span>
             <button
               className="text-(--navbar-blue-text) hover:underline hover:cursor-pointer"
               onClick={() => {
@@ -67,7 +64,7 @@ export default function Navbar() {
         ) : (
           <Link
             to={ROUTES.LOGIN}
-            className="text-(--navbar-blue-text) hover:underline"
+            className="text-white hover:text-[#2071b3]"
           >
             Login
           </Link>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES } from "@/paths";
+import logo from "/icon.png";
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -25,12 +26,13 @@ export default function Sidebar() {
   return (
     <div className="w-64 bg-white shadow-lg flex-shrink-0 flex flex-col h-screen sticky top-0">
       <div className="p-6 border-b border-gray-200">
-        <h1
-          className="text-xl font-bold text-gray-900 cursor-pointer"
-          onClick={() => navigate(ROUTES.LANDINGPAGE)}
-        >
-          Logo
-        </h1>
+        <div className="flex justify-center md:w-2.1">
+          <img
+            src={logo}
+            alt="Equipe de atendimento"
+            className="max-w-[150px] rounded-xl shadow-lg object-contain p-2"
+          />
+        </div>
       </div>
 
       <nav className="p-4 flex-1 overflow-y-auto">
