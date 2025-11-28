@@ -34,11 +34,11 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-linear-to-br from-sky-200 to-sky-100">
+    <div className="flex flex-col min-h-screen bg-linear-to-br bg-white">
       <main className="grow p-4 md:p-8">
         <section className="flex flex-wrap items-center pt-4 gap-8">
           <div className="flex flex-col w-full xl:w-[48%] mb-4">
-            <h1 className="text-center md:text-left text-4xl lg:text-5xl font-extrabold mb-4 px-4">
+            <h1 className="text-center md:text-left text-4xl lg:text-5xl font-extrabold pt-3 mb-4 px-4">
               O Mundo Todo em Suas Mãos
             </h1>
             <div className="text-lg p-4 md:px-8">
@@ -59,7 +59,7 @@ export default function LandingPage() {
           </div>
           <div className="flex justify-center w-full xl:w-[48%] mt-8 xl:mt-0">
             <img
-              className="rounded-3xl w-full max-w-lgg shadow-xl"
+              className="rounded-3xl w-full max-w-xgg shadow-xl"
               src={destaqueImage}
               alt="Destaque"
             />

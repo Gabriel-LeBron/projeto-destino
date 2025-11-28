@@ -2,6 +2,13 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import logo from "/icon.png";
+import { BiSolidPieChartAlt2 } from "react-icons/bi";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { HiMiniCamera } from "react-icons/hi2";
+import { FaHotel } from "react-icons/fa6";
+import { FaTruckPlane } from "react-icons/fa6";
+
+
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -42,7 +49,10 @@ export default function Sidebar() {
             onClick={() => navigate(ROUTES.RELATORIO)}
             className={linkClass(ROUTES.RELATORIO)}
           >
-            Dashboard
+            <div className="pl-4 flex items-center">
+                    <BiSolidPieChartAlt2 className="text-lgg mr-2 pb-0.5" />
+                    Dashboard
+                  </div>
           </button>
 
           {/* Menu Dropdown de Gerenciamento */}
@@ -51,7 +61,7 @@ export default function Sidebar() {
               onClick={() => setIsAdminOpen(!isAdminOpen)}
               className="w-full text-left px-4 py-2 rounded-lg font-bold text-gray-800 hover:bg-gray-50 flex justify-between items-center"
             >
-              <span>Administração</span>
+              <span>OPÇÕES</span>
               <span
                 className={`transform transition-transform ${
                   isAdminOpen ? "rotate-180" : ""
@@ -67,28 +77,42 @@ export default function Sidebar() {
                   onClick={() => navigate(ROUTES.VIAGENS_CADASTRADAS)}
                   className={linkClass(ROUTES.VIAGENS_CADASTRADAS, true)}
                 >
-                  Pacotes de Viagem
+                  <div className="flex items-center">
+                    <FaMapMarkedAlt className="text-lg mr-2 pb-0.5" />
+                    Pacotes de Viagem
+                  </div>
                 </button>
-
+                  
+                {/* --- ALTERAÇÃO FEITA AQUI --- */}
                 <button
                   onClick={() => navigate(ROUTES.PACOTES_FOTO_LISTA)}
                   className={linkClass(ROUTES.PACOTES_FOTO_LISTA, true)}
                 >
-                  Pacotes de Fotos
+                  <div className="flex items-center">
+                    <HiMiniCamera className="text-lg mr-2 pb-0.5" />
+                    Pacotes de Fotos
+                  </div>
                 </button>
+                {/* --------------------------- */}
 
                 <button
                   onClick={() => navigate(ROUTES.HOTEIS_LISTA)}
                   className={linkClass(ROUTES.HOTEIS_LISTA, true)}
                 >
-                  Hotéis
+                  <div className="flex items-center">
+                    <FaHotel className="text-lg mr-2 pb-0.5" />
+                    Hotéis
+                  </div>
                 </button>
 
                 <button
                   onClick={() => navigate(ROUTES.TRANSPORTES_LISTA)}
                   className={linkClass(ROUTES.TRANSPORTES_LISTA, true)}
                 >
-                  Transportes
+                  <div className="flex items-center">
+                    <FaTruckPlane className="text-lg mr-2 pb-0.5" />
+                    Transporte
+                  </div>
                 </button>
               </div>
             )}

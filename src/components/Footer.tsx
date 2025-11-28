@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import logo from "/icon.png";
+import logo from "/LogoPaulaViagensVetor_2.png";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
+import { MdPlace } from "react-icons/md";
+import { FaFacebookSquare } from "react-icons/fa";
+import { PiInstagramLogoFill } from "react-icons/pi";
 
 export default function Footer() {
   return (
@@ -9,7 +14,7 @@ export default function Footer() {
           <img
             src={logo}
             alt="Logo"
-            className="w-55 mb-4 select-none pt-4 pl-15"
+            className="w-65 mb-4 select-none pt-4 pl-15"
           />
         </div>
 
@@ -54,23 +59,39 @@ export default function Footer() {
         <div>
           <h3 className="font-bold text-xl mb-4 text-blue-700">Contato</h3>
           <ul className="space-y-2 text-white drop-shadow-md">
-            <li>📞 (11) 4002-8922</li>
-            <li>✉️ contato@destinoviagens.com</li>
-            <li>📍 São Paulo - SP</li>
+            <div className="flex items-center">
+              <BsFillTelephoneFill className="text-2xl mr-2" />
+              <li> (11) 4002-8922</li>
+            </div>
+            <div className="flex items-center">
+              <MdEmail className="text-2xl mr-2" />
+              <li>contato@destinoviagens.com</li>
+            </div>
+            <div className="flex items-center">
+              <MdPlace className="text-2xl mr-2" />
+              <li>São Paulo - Lorena</li>
+            </div>
           </ul>
         </div>
 
         <div>
           <h3 className="font-bold text-xl mb-4 text-blue-700">Siga-nos</h3>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-blue-900 transition text-2xl">
-              🌐
+            <a
+              href="#"
+              className="text-white drop-shadow-md hover:text-[#2071b3] transition"
+            >
+              <div className="flex items-center">
+                <FaFacebookSquare className="text-2xl" />
+              </div>
             </a>
-            <a href="#" className="hover:text-blue-900 transition text-2xl">
-              📘
-            </a>
-            <a href="#" className="hover:text-blue-900 transition text-2xl">
-              📸
+            <a
+              href="#"
+              className="text-white drop-shadow-md hover:text-[#2071b3] transition"
+            >
+              <div className="flex items-center">
+                <PiInstagramLogoFill className="text-2xl" />
+              </div>
             </a>
           </div>
         </div>

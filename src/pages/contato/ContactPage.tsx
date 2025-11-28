@@ -1,4 +1,9 @@
 import logo from "/icon.png";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
+import { MdPlace } from "react-icons/md";
+import { FaFacebookSquare } from "react-icons/fa";
+import { PiInstagramLogoFill } from "react-icons/pi";
 
 export default function ContactPage() {
   return (
@@ -12,20 +17,37 @@ export default function ContactPage() {
             atender.
           </p>
 
-          <ul className="space-y-3 text-gray-800">
-            <li>📞 (11) 4002-8922</li>
-            <li>📍 Lorena, 1234 — São Paulo, SP</li>
+          <ul className="space-y-2 text-gray-800 drop-shadow-md">
+            <div className="flex items-center">
+              <BsFillTelephoneFill className="text-2xl mr-2" />
+              <li> (11) 4002-8922</li>
+            </div>
+            <div className="flex items-center">
+              <MdEmail className="text-2xl mr-2" />
+              <li>contato@destinoviagens.com</li>
+            </div>
+            <div className="flex items-center">
+              <MdPlace className="text-2xl mr-2" />
+              <li>São Paulo - Lorena</li>
+            </div>
           </ul>
 
-          <div className="flex space-x-4 text-2xl mt-4">
-            <a href="#" className="hover:text-[#ff7300] transition">
-              🌐
+          <div className="flex space-x-4">
+            <a
+              href="#"
+              className="text-gray-900 drop-shadow-md hover:text-[#2071b3] transition"
+            >
+              <div className="flex items-center">
+                <FaFacebookSquare className="text-2xl" />
+              </div>
             </a>
-            <a href="#" className="hover:text-[#ff7300] transition">
-              📘
-            </a>
-            <a href="#" className="hover:text-[#ff7300] transition">
-              📸
+            <a
+              href="#"
+              className="text-gray-800 drop-shadow-md hover:text-[#2071b3] transition"
+            >
+              <div className="flex items-center">
+                <PiInstagramLogoFill className="text-2xl" />
+              </div>
             </a>
           </div>
         </div>
