@@ -5,18 +5,60 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useState, useEffect } from "react";
 
-interface PacoteDisplay {
+export interface Pacote {
   id: number;
   nome: string;
   descricao: string;
-  fotosDoPacote: {
+  preco: number;
+  status: string;
+  inicio: string;
+  fim: string;
+  disponibilidade: number;
+  tags?: string[];
+
+  hotel: {
+    id: number;
+    nome: string;
+    endereco: string;
+    diaria: number;
+    cidade: {
+      id: number;
+      nome: string;
+      estado: {
+        id: number;
+        sigla: string;
+        nome: string;
+        regiao: {
+          id: number;
+          sigla: string;
+          nome: string;
+        };
+      };
+    };
+  };
+
+  transporte: {
+    id: number;
+    empresa: string;
+    meio: string;
+    preco: number;
+  };
+
+  fotosDoPacote?: {
+    id: number;
+    nome: string;
     fotoDoPacote: string;
+    fotos?: Array<{
+      id: number;
+      nome: string;
+      url: string;
+    }>;
   };
 }
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const [pacotes, setPacotes] = useState<PacoteDisplay[]>([]);
+  const [pacotes, setPacotes] = useState<Pacote[]>([]);
 
   useEffect(() => {
     const fetchPacotes = async () => {
