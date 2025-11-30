@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
+import { TbPhotoShare } from "react-icons/tb";
+import { HiMiniCamera } from "react-icons/hi2";
+import { BiSolidPencil } from "react-icons/bi";
 
 interface PacoteFoto {
   id: number;
@@ -35,12 +38,16 @@ export default function PacotesFotoLista() {
     <div className="min-h-screen bg-gray-50 flex">
       <div className="flex-1 p-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Pacotes de Fotos</h1>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center">
+            <HiMiniCamera className="text-3xl mr-2" />
+            <span>Gerenciar Pacotes de Fotos</span>
+          </h1>
           <button
             onClick={() => navigate(ROUTES.REGISTRAR_FOTOS)}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center space-x-2 justify-center shadow-md"
           >
-            Novo Pacote de Fotos
+            <TbPhotoShare className="text-lg" />
+            <span>Novo Pacote de Fotos</span>
           </button>
         </div>
 
@@ -63,11 +70,13 @@ export default function PacotesFotoLista() {
                   <p className="text-sm text-gray-500 mb-4">
                     {pct.fotos?.length || 0} fotos adicionais
                   </p>
+                  {/* Botão Editar: Ícone e texto alinhados */}
                   <button
                     onClick={() => handleEditar(pct.id)}
-                    className="w-full border border-blue-600 text-blue-600 py-2 rounded hover:bg-blue-50"
+                    className="w-full border border-blue-600 text-blue-600 py-2 rounded hover:bg-blue-50 **flex items-center justify-center space-x-2**"
                   >
-                    Editar
+                    <BiSolidPencil className="text-lg" />
+                    <span>Editar</span>
                   </button>
                 </div>
               </div>

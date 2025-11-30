@@ -3,11 +3,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import logo from "/icon.png";
 import { BiSolidPieChartAlt2 } from "react-icons/bi";
+import { IoIosArrowDropupCircle } from "react-icons/io";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { HiMiniCamera } from "react-icons/hi2";
 import { FaHotel } from "react-icons/fa6";
 import { FaTruckPlane } from "react-icons/fa6";
-
+import { FaUserCog } from "react-icons/fa";
 
 
 export default function Sidebar() {
@@ -54,7 +55,6 @@ export default function Sidebar() {
                   </div>
           </button>
 
-          {/* Menu Dropdown de Gerenciamento */}
           <div>
             <button
               onClick={() => setIsAdminOpen(!isAdminOpen)}
@@ -66,7 +66,7 @@ export default function Sidebar() {
                   isAdminOpen ? "rotate-180" : ""
                 }`}
               >
-                ▼
+                <IoIosArrowDropupCircle className="text-lgg mr-2 pb-0.5" />
               </span>
             </button>
 
@@ -82,7 +82,6 @@ export default function Sidebar() {
                   </div>
                 </button>
                   
-                {/* --- ALTERAÇÃO FEITA AQUI --- */}
                 <button
                   onClick={() => navigate(ROUTES.PACOTES_FOTO_LISTA)}
                   className={linkClass(ROUTES.PACOTES_FOTO_LISTA, true)}
@@ -92,7 +91,6 @@ export default function Sidebar() {
                     Pacotes de Fotos
                   </div>
                 </button>
-                {/* --------------------------- */}
 
                 <button
                   onClick={() => navigate(ROUTES.HOTEIS_LISTA)}
@@ -117,7 +115,10 @@ export default function Sidebar() {
                   onClick={() => navigate(ROUTES.LISTAR_USUARIOS)}
                   className={linkClass(ROUTES.LISTAR_USUARIOS, true)}
                 >
-                  Usuarios
+                  <div className="flex items-center">
+                    <FaUserCog className="text-lg mr-2 pb-0.5" />
+                    Usuários
+                  </div>
                 </button>
               </div>
             )}

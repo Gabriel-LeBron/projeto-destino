@@ -28,19 +28,19 @@ export default function Navbar() {
       <nav className="flex flex-wrap gap-15 pr-20 pl-10 text-xl">
         <Link
           to={ROUTES.RELATORIO}
-          className="text-white hover:text-[#2071b3]"
+          className="text-white font-bold hover:text-[#2071b3]"
         >
           Administração
         </Link>
         <Link
           to={ROUTES.CONTATO}
-          className="text-white hover:text-[#2071b3]"
+          className="text-white font-bold hover:text-[#2071b3]"
         >
           Contato
         </Link>
         {user ? (
           <div>
-            <span className="text-white">Usuário: {user} | </span>
+            <span className="text-white font-bold">Usuário: {user} | </span>
             <button
               className="text-(--navbar-blue-text) hover:underline hover:cursor-pointer"
               onClick={() => {
@@ -54,7 +54,7 @@ export default function Navbar() {
         ) : (
           <Link
             to={ROUTES.LOGIN}
-            className="text-white hover:text-[#2071b3]"
+            className="text-white font-bold hover:text-[#2071b3]"
           >
             Login
           </Link>

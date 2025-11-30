@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import DataList from "@/components/administracao/lista/dataList";
+import { FaHotel } from "react-icons/fa6";
 
 interface cidade {
   id: number;

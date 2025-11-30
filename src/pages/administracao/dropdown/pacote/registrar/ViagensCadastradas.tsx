@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { RiMapPinAddFill } from "react-icons/ri";
 
 interface Pacote {
   id: number;
@@ -92,14 +94,18 @@ export default function ViagensCadastradas() {
     <div className="min-h-screen bg-gray-50 flex">
       <div className="flex-1 p-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Gestão de Viagens (Por Local)
+          {/* Título: Alinhamento do ícone e texto na mesma linha */}
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center space-x-2">
+            <FaMapMarkedAlt className="text-3xl" />
+            <span>Gerenciar Pacotes de Viagem</span>
           </h1>
+          {/* Botão Adicionar: Alinhamento e hover verde */}
           <button
             onClick={() => navigate(ROUTES.CADASTRAR_VIAGEM)}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-sm flex items-center space-x-2 justify-center"
           >
-            + Cadastrar Viagem
+            <RiMapPinAddFill className="text-lg" />
+            <span>Adicionar Pacote de Viagens</span>
           </button>
         </div>
 

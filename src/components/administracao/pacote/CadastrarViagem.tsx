@@ -176,19 +176,6 @@ export default function CadastrarViagem() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 mb-8 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-900">Logo</h1>
-        <span
-          className={`px-3 py-1 rounded-full text-sm font-medium ${
-            isEditando
-              ? "bg-orange-100 text-orange-800"
-              : "bg-blue-100 text-blue-800"
-          }`}
-        >
-          {isEditando ? "✏️ Editando Viagem" : "➕ Nova Viagem"}
-        </span>
-      </div>
-
       <div className="max-w-4xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
           <div className="mb-6">
