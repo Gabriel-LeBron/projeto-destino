@@ -22,7 +22,7 @@ type UserState = {
 };
 
 type UserActions = {
-  login: (creds: LoginParams) => Promise<void>;
+  login: (creds: LoginParams) => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
   checkSession: () => Promise<void>;
   clearError: () => void;
@@ -51,7 +51,7 @@ export const useSession = create<UserState & UserActions>((set, get) => ({
 
       const data = await response.json();
 
-      if (!response.ok || data.erro) {
+      if (!response.ok) {
         throw new Error(data.mensagem || "Falha ao realizar login");
       }
 
@@ -61,13 +61,19 @@ export const useSession = create<UserState & UserActions>((set, get) => ({
         isLoading: false,
         error: null,
       });
+
+      return { success: true };
     } catch (err: any) {
+      const mensagemErro = err.message || "Erro de conexão";
+
       set({
         usuario: null,
         isLoged: false,
         isLoading: false,
-        error: err.message || "Erro de conexão",
+        error: mensagemErro,
       });
+
+      return { success: false, error: mensagemErro };
     }
   },
 

@@ -8,10 +8,9 @@ import { useSession } from "@/store/sessionStore";
 import { ROUTES } from "@/paths";
 
 export default function Login() {
+  const { login, isLoading } = useSession();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
-  const { login, isLoading } = useSession();
 
   const [modal, setModal] = useState<Modal>({
     show: false,
@@ -22,18 +21,20 @@ export default function Login() {
   const handleSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
 
-    try {
-      await login({ email, senha });
+    const resultado = await login({ email, senha });
+
+    setSenha("");
+
+    if (resultado.success) {
       setModal({
         show: true,
         mensagem: "Login realizado com sucesso!",
         url: ROUTES.LANDINGPAGE,
       });
-    } catch (error: any) {
-      console.error("Erro no login:", error);
+    } else {
       setModal({
         show: true,
-        mensagem: error.message || "Erro ao tentar executar a ação!",
+        mensagem: resultado.error || "Erro desconhecido",
         url: null,
       });
     }
