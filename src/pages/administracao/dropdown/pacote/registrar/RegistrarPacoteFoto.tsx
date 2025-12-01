@@ -150,9 +150,9 @@ export default function RegistrarPacoteFoto() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 items-center space-x-3">
-                <span>Nome do Pacote</span>
+              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center space-x-2">
                 <TbPencilPin className="text-lg" />
+                <span>Nome do Pacote</span>
               </label>
               <input
                 type="text"
@@ -163,9 +163,9 @@ export default function RegistrarPacoteFoto() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 items-center space-x-3">
-                <span>URL da Foto em Destaque</span>
+              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center space-x-2">
                 <FaLink className="text-lg" />
+                <span>URL da Foto em Destaque</span>
               </label>
               <input
                 type="text"
@@ -206,9 +206,9 @@ export default function RegistrarPacoteFoto() {
                 className="flex gap-4 items-start bg-gray-50 p-4 rounded-lg border border-gray-200"
               >
                 <div className="flex-1">
-                  <label className="block text-xs font-medium text-gray-500 mb-1 items-center space-x-2">
-                    <span>Nome da Foto Adicional {index + 1}</span>
+                  <label className="block text-xs font-medium text-gray-500 mb-1 flex items-center space-x-2">
                     <BiSolidPencil className="text-lg" />
+                    <span>Nome da Foto Adicional {index + 1}</span>
                   </label>
                   <input
                     type="text"
@@ -220,9 +220,9 @@ export default function RegistrarPacoteFoto() {
                   />
                 </div>
                 <div className="flex-2">
-                  <label className="block text-xs font-medium text-gray-500 mb-1 items-center space-x-2">
-                    <span>URL da Imagem Adicional {index + 1}</span>
+                  <label className="block text-xs font-medium text-gray-500 mb-1 flex items-center space-x-2">
                     <FaLink className="text-lg" />
+                    <span>URL da Imagem Adicional {index + 1}</span>
                   </label>
                   <input
                     type="text"
@@ -248,7 +248,7 @@ export default function RegistrarPacoteFoto() {
           <div className="mt-4 flex justify-end">
             <button
               onClick={adicionarCampo}
-              className="font-medium px-4 py-2 rounded-lg transition-colors flex items-center space-x-2 bg-blue-600 text-white hover:bg-green-700 shadow-md"
+              className="font-medium px-4 py-2 rounded-lg transition-colors flex items-center space-x-2 bg-blue-600 hover:bg-blue-500 text-white shadow-md"
             >
               <MdOutlineAddPhotoAlternate className="text-lg" />
               <span>Adicionar mais 1 foto</span>
@@ -258,7 +258,7 @@ export default function RegistrarPacoteFoto() {
           <div className="mt-8 pt-6 border-t border-gray-200">
             <button
               onClick={handleSalvar}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-md flex items-center justify-center space-x-2"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md flex items-center justify-center space-x-2"
             >
               <TbPhotoShare className="text-lg" />
               <span>

@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import logo from "/LogoPaulaViagensVetor_2.png";
+import { PiMapPinAreaFill } from "react-icons/pi";
+import { MdContactMail } from "react-icons/md";
+import { RiUserFollowFill } from "react-icons/ri";
+
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { MdPlace } from "react-icons/md";
@@ -19,7 +23,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-xl mb-4 text-blue-700">Navegação</h3>
+          {/* Título Navegação - Alinhamento aplicado aqui */}
+          <h3 className="font-bold text-xl mb-4 text-blue-700 flex items-center space-x-2">
+            <PiMapPinAreaFill className="text-2xl" />
+            <span>Navegação</span>
+          </h3>
           <ul className="space-y-2">
             <li>
               <Link
@@ -31,10 +39,10 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/contato"
+                to="/pacotes"
                 className="text-white drop-shadow-md hover:text-[#2071b3] transition"
               >
-                Contato
+                Pacotes
               </Link>
             </li>
             <li>
@@ -57,41 +65,45 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-xl mb-4 text-blue-700">Contato</h3>
+          <h3 className="font-bold text-xl mb-4 text-blue-700 flex items-center space-x-2">
+            <MdContactMail className="text-2xl" />
+            <span>Contato</span>
+          </h3>
           <ul className="space-y-2 text-white drop-shadow-md">
-            <div className="flex items-center">
-              <BsFillTelephoneFill className="text-2xl mr-2" />
-              <li> (11) 4002-8922</li>
-            </div>
-            <div className="flex items-center">
-              <MdEmail className="text-2xl mr-2" />
-              <li>contato@destinoviagens.com</li>
-            </div>
-            <div className="flex items-center">
-              <MdPlace className="text-2xl mr-2" />
-              <li>São Paulo - Lorena</li>
-            </div>
+            <li className="flex items-center space-x-2">
+              <BsFillTelephoneFill className="text-xl" />
+              <span>(11) 4002-8922</span>
+            </li>
+            <li className="flex items-center space-x-2">
+              <MdEmail className="text-xl" />
+              <span>contato@destinoviagens.com</span>
+            </li>
+            <li className="flex items-center space-x-2">
+              <MdPlace className="text-xl" />
+              <span>São Paulo - Lorena</span>
+            </li>
           </ul>
         </div>
 
         <div>
-          <h3 className="font-bold text-xl mb-4 text-blue-700">Siga-nos</h3>
+          <h3 className="font-bold text-xl mb-4 text-blue-700 flex items-center space-x-2">
+            <RiUserFollowFill className="text-2xl" />
+            <span>Siga-nos</span>
+          </h3>
           <div className="flex space-x-4">
             <a
               href="#"
-              className="text-white drop-shadow-md hover:text-[#2071b3] transition"
+              className="text-white drop-shadow-md hover:text-[#2071b3] transition flex items-center space-x-2"
             >
-              <div className="flex items-center">
-                <FaFacebookSquare className="text-2xl" />
-              </div>
+              <FaFacebookSquare className="text-2xl" />
+              <span>Facebook</span>
             </a>
             <a
               href="#"
-              className="text-white drop-shadow-md hover:text-[#2071b3] transition"
+              className="text-white drop-shadow-md hover:text-[#2071b3] transition flex items-center space-x-2"
             >
-              <div className="flex items-center">
-                <PiInstagramLogoFill className="text-2xl" />
-              </div>
+              <PiInstagramLogoFill className="text-2xl" />
+              <span>Instagram</span>
             </a>
           </div>
         </div>

@@ -4,6 +4,7 @@ import placeholder from "/placeholder.jpg";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useState, useEffect } from "react";
+import { MdOutlineTravelExplore } from "react-icons/md";
 
 export interface Pacote {
   id: number;
@@ -56,9 +57,14 @@ export interface Pacote {
   };
 }
 
+  
+
 export default function LandingPage() {
   const navigate = useNavigate();
   const [pacotes, setPacotes] = useState<Pacote[]>([]);
+
+  const [termoBusca, setTermoBusca] = useState("");
+  const [filtroPrecoMaximo, setFiltroPrecoMaximo] = useState<number | "">("");
 
   useEffect(() => {
     const fetchPacotes = async () => {
@@ -76,7 +82,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-linear-to-br bg-white">
+    <div className="flex flex-col min-h-screen bg-center bg-linear-to-br from-[#e4f3ff] via-[#ffffff] to-[#e4f3ff]">
       <main className="grow p-4 md:p-8">
         <section className="flex flex-wrap items-center pt-4 gap-8">
           <div className="flex flex-col w-full xl:w-[48%] mb-4">
@@ -114,6 +120,22 @@ export default function LandingPage() {
           <h2 className="text-center text-4xl font-bold mb-9">
             Confira Nossos Pacotes
           </h2>
+
+          <div className="mb-4">
+                  <form onSubmit={(e) => e.preventDefault()} className="flex gap-4">
+                    <div className="flex-1 relative">
+                      <MdOutlineTravelExplore className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
+                      <input
+                        type="text"
+                        value={termoBusca}
+                        onChange={(e) => setTermoBusca(e.target.value)}
+                        placeholder="Busque por destino ou nome do pacote..."
+                        className="w-full pl-12 pr-6 py-4 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-lg"
+                      />
+                    </div>
+                  </form>
+                </div>
+
           <div className="flex justify-center gap-6 flex-wrap px-4">
             {pacotes.map((data) => (
               <Card
