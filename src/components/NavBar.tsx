@@ -2,6 +2,13 @@ import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
 import logo from "/LogoPaulaViagensVetor_2.png";
 import { Link } from "react-router-dom";
+import { LuPackageSearch } from "react-icons/lu";
+import { MdContactMail } from "react-icons/md";
+import { TbMapPinCog } from "react-icons/tb";
+import { FaUser } from "react-icons/fa";
+import { BiSolidLogInCircle } from "react-icons/bi";
+import { BiSolidLogOutCircle } from "react-icons/bi";
+
 
 export default function Navbar() {
   const session = useSession();
@@ -19,40 +26,46 @@ export default function Navbar() {
       <nav className="flex flex-wrap gap-15 pr-20 pl-10 text-xl">
         <Link
           to={ROUTES.BUSCAR_PACOTES}
-          className="text-white hover:text-[#2071b3]"
+          className="text-white hover:text-[#2071b3] flex items-center space-x-2"
         >
-          Buscar por pacotes
+          <LuPackageSearch className="text-2xl" />
+          <span>Buscar Pacotes</span>
         </Link>
-        <Link to={ROUTES.CONTATO} className="text-white hover:text-[#2071b3]">
-          Contato
+        <Link to={ROUTES.CONTATO} className="text-white hover:text-[#2071b3] flex items-center space-x-2">
+          <MdContactMail className="text-2xl" />
+          <span>Contato</span>
         </Link>
         {session.usuario?.perfil == "ADMINISTRADOR" && (
           <Link
             to={ROUTES.RELATORIO}
-            className="text-white font-bold hover:text-[#2071b3]"
+            className="text-white font-bold hover:text-[#2071b3] flex items-center space-x-2"
           >
-            Administração
+            <TbMapPinCog className="text-2xl" />
+            <span>Administração</span>
           </Link>
         )}
         {session.isLoged ? (
-          <span className="text-white font-bold flex">
-            Usuário: {session.usuario?.nomeCompleto}
+          <span className="text-white font-bold flex items-center space-x-2">
+            <FaUser className="text-2xl" />
+            <span>Usuário: {session.usuario?.nomeCompleto}</span>
             <p className="ml-2">|</p>
             <button
-              className="text-(--navbar-blue-text) hover:underline hover:cursor-pointer ml-2"
+              className="text-(--navbar-blue-text) hover:underline hover:cursor-pointer ml-2 flex items-center space-x-1"
               onClick={() => {
                 useSession.getState().logout();
               }}
             >
-              Logout
+              <BiSolidLogOutCircle className="text-2xl" />
+              <span>Logout</span>
             </button>
           </span>
         ) : (
           <Link
             to={ROUTES.LOGIN}
-            className="text-white font-bold hover:text-[#2071b3]"
+            className="text-white font-bold hover:text-[#2071b3] flex items-center space-x-2"
           >
-            Login
+            <BiSolidLogInCircle className="text-2xl" />
+            <span>Conecte-se</span>
           </Link>
         )}
       </nav>

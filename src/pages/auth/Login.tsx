@@ -78,12 +78,22 @@ export default function Login() {
           </form>
 
           <p className="mt-6 text-sm text-[#666]">
-            Não tem conta?
+            Não possui uma conta?
             <Link
               to="/cadastro"
               className="text-[#007bff] no-underline font-bold hover:underline ml-1"
             >
               Cadastre-se
+            </Link>
+          </p>
+
+          <p className="mt-6 text-sm text-[#666]">
+            Voltar para a
+            <Link
+              to="/"
+              className="text-[#007bff] no-underline font-bold hover:underline ml-1"
+            >
+              Tela Inicial
             </Link>
           </p>
         </div>

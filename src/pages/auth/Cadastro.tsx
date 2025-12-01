@@ -312,7 +312,6 @@ export default function Cadastro() {
                 />
               </div>
 
-              {/* --- MUDANÇA 2: Lista de Requisitos da Senha --- */}
               {usuario.senha.length > 0 && (
                 <div className="col-span-2 mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
                   <p className="text-xs font-semibold text-gray-500 mb-2">
@@ -360,12 +359,21 @@ export default function Cadastro() {
           </form>
 
           <p className="mt-6 text-sm text-[#666]">
-            Já tem conta?
+            Já possui uma conta?
             <Link
               to={"/login"}
               className="text-[#007bff] no-underline font-semibold hover:underline ml-1"
             >
-              Fazer login
+              Faça o Login
+            </Link>
+          </p>
+          <p className="mt-6 text-sm text-[#666]">
+            Voltar para a
+            <Link
+              to="/"
+              className="text-[#007bff] no-underline font-bold hover:underline ml-1"
+            >
+              Tela Inicial
             </Link>
           </p>
         </div>

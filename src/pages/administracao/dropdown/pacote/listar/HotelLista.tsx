@@ -51,33 +51,35 @@ export default function HotelLista() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchHoteis = async () => {
+      if (!usuario || !usuario.accessToken) return;
+
+      setLoading(true);
+      try {
+        const response = await fetch("/api/hotel", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${usuario.accessToken}`,
+          },
+          credentials: "include",
+        });
+
+        if (!response.ok) throw new Error("Erro ao buscar hotéis");
+
+        const result = await response.json();
+        setHoteis(result);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (!isLoading && usuario) {
       fetchHoteis();
     }
   }, [usuario, isLoading]);
-
-  const fetchHoteis = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/hotel", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${usuario?.accessToken}`,
-        },
-        credentials: "include",
-      });
-
-      if (!response.ok) throw new Error("Erro ao buscar hotéis");
-
-      const result = await response.json();
-      setHoteis(result);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleEdit = (id: number) => {
     navigate(ROUTES.EDITAR_HOTEL.replace(":id", String(id)));
@@ -87,12 +89,7 @@ export default function HotelLista() {
     if (!window.confirm("Deseja realmente excluir este hotel?")) return;
 
     try {
-      const response = await fetch(`/api/hotel/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${usuario?.accessToken}`,
-        },
-      });
+      const response = await fetch(`/api/hotel/${id}`, { method: "DELETE" });
 
       if (response.ok) {
         alert("Hotel excluído com sucesso!");

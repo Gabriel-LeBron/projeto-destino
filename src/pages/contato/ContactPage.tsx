@@ -7,7 +7,7 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 
 export default function ContactPage() {
   return (
-    <div className="h-[75%] flex flex-col bg-white pt-35">
+    <div className="h-[75%] flex flex-col bg-white pt-35 bg-center bg-linear-to-br from-[#e4f3ff] via-[#ffffff] to-[#e4f3ff]">
       <section className="h-[50%] flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-20 gap-10">
         <div className="flex flex-col space-y-6 md:w-1/2">
           <h1 className="text-4xl font-bold text-[#2071b3]">Fale Conosco</h1>
@@ -38,7 +38,10 @@ export default function ContactPage() {
               className="text-gray-900 drop-shadow-md hover:text-[#2071b3] transition"
             >
               <div className="flex items-center">
-                <FaFacebookSquare className="text-2xl" />
+                <h2>
+                  <FaFacebookSquare className="text-2xl" />
+                  Facebook
+                </h2>
               </div>
             </a>
             <a
@@ -46,7 +49,10 @@ export default function ContactPage() {
               className="text-gray-800 drop-shadow-md hover:text-[#2071b3] transition"
             >
               <div className="flex items-center">
-                <PiInstagramLogoFill className="text-2xl" />
+                <h2>
+                  <PiInstagramLogoFill className="text-2xl" />
+                  Instagram
+                </h2>
               </div>
             </a>
           </div>
@@ -55,7 +61,7 @@ export default function ContactPage() {
         <div className="flex justify-center md:w-2.4">
           <img
             src={logo}
-            alt="Equipe de atendimento"
+            alt="Logo"
             className="max-w-[350px] rounded-xl shadow-lg object-contain p-2"
           />
         </div>
