@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
+import { FaMoneyCheckAlt } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { PiPackageBold } from "react-icons/pi";
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -109,8 +112,9 @@ export default function CheckoutPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Dados do Usuário (Vindo do Store) */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                👤 Seus Dados
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaUser className="text-xl" />
+                Seus Dados
               </h2>
               <div className="space-y-2">
                 <p>
@@ -121,8 +125,9 @@ export default function CheckoutPage() {
 
             {/* Forma de Pagamento */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                💳 Forma de Pagamento
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaMoneyCheckAlt className="text-xl" />
+                Forma de Pagamento
               </h2>
 
               <div className="mb-6">
@@ -134,9 +139,9 @@ export default function CheckoutPage() {
                   onChange={(e) => setMetodoPagamento(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="cartao-credito">💳 Cartão de Crédito</option>
-                  <option value="cartao-debito">💳 Cartão de Débito</option>
-                  <option value="pix">🧾 PIX</option>
+                  <option value="cartao-credito">Cartão de Crédito</option>
+                  <option value="cartao-debito">Cartão de Débito</option>
+                  <option value="pix">PIX</option>
                 </select>
               </div>
 
@@ -201,8 +206,9 @@ export default function CheckoutPage() {
           {/* Coluna Direita: Resumo */}
           <div className="space-y-6">
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 sticky top-4">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                📦 Resumo do Pedido
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <PiPackageBold className="text-3xl" />
+                Resumo do Pedido
               </h2>
 
               <div className="space-y-3 mb-4">

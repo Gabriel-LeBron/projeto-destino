@@ -81,7 +81,7 @@ export default function Dashboard() {
             </div>
           </>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
           <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">
               Lorem ipsum dolor sit amet
@@ -101,7 +101,7 @@ export default function Dashboard() {
               nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

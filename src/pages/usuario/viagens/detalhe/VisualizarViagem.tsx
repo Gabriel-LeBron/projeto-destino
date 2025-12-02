@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSession } from "@/store/sessionStore";
 import { ROUTES } from "@/paths";
+import { FaMapMarkedAlt, FaMoneyCheckAlt } from "react-icons/fa";
+import { MdEmail, MdOutlineAirplanemodeActive } from "react-icons/md";
+import { TbCalendarUp } from "react-icons/tb";
+import { TbCalendarRepeat } from "react-icons/tb";
+import { FaHotel } from "react-icons/fa6";
+import { FaTruckPlane } from "react-icons/fa6";
+import { FaSearchLocation } from "react-icons/fa";
+import { BsFillTelephoneFill } from "react-icons/bs";
 
 // Interface compatível com o DTO Java ViagemDetalhadaDTO
 interface ViagemDetalhada {
@@ -174,51 +182,65 @@ export default function VisualizarViagem() {
           <div className="lg:col-span-2 space-y-6">
             {/* Cards de Datas e Infos Básicas */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <span className="mr-2">📅</span>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaMapMarkedAlt className="text-xl" />
                 Resumo da Reserva
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-center space-x-3">
+                  {/* Ícone Partida: Mantido o layout com a bolha azul */}
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
-                    ✈️
+                    <MdOutlineAirplanemodeActive className="text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-xs text-gray-500 uppercase">Partida</h3>
+                    <h3 className="text-xs text-gray-500 uppercase flex items-center gap-1">
+                      <TbCalendarUp className="text-lg" />
+                      Partida
+                    </h3>
                     <p className="font-semibold text-gray-900">
                       {viagem.dataPartida}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
-                    🏠
+                  {/* Ícone Retorno: Mantido o layout com a bolha azul (Adicionado) */}
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                    <TbCalendarRepeat className="text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-xs text-gray-500 uppercase">Retorno</h3>
+                    <h3 className="text-xs text-gray-500 uppercase flex items-center gap-1">
+                      <TbCalendarRepeat className="text-lg" />
+                      Retorno
+                    </h3>
                     <p className="font-semibold text-gray-900">
                       {viagem.dataRetorno}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600">
-                    🏨
+                  {/* Ícone Hotel: Mantido o layout com a bolha azul (Adicionado) */}
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                    <FaHotel className="text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-xs text-gray-500 uppercase">Hotel</h3>
+                    <h3 className="text-xs text-gray-500 uppercase flex items-center gap-1">
+                      <FaHotel className="text-lg" />
+                      Hotel
+                    </h3>
                     <p className="font-semibold text-gray-900">
                       {viagem.nomeHotel}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
-                    🚌
+                  {/* Ícone Transporte: Mantido o layout com a bolha azul (Adicionado) */}
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                    <FaTruckPlane className="text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-xs text-gray-500 uppercase">
+                    <h3 className="text-xs text-gray-500 uppercase flex items-center gap-1">
+                      <FaTruckPlane className="text-lg" />
                       Transporte
                     </h3>
                     <p className="font-semibold text-gray-900">
@@ -236,8 +258,8 @@ export default function VisualizarViagem() {
 
             {/* Inclusões */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <span className="mr-2">✅</span>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaSearchLocation className="text-xl" />
                 Itens Inclusos
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -271,7 +293,8 @@ export default function VisualizarViagem() {
           <div className="space-y-6">
             {/* Card de Valor e Status */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaMoneyCheckAlt className="text-lg" />
                 Detalhes do Pagamento
               </h2>
               <div className="space-y-4">
@@ -302,12 +325,12 @@ export default function VisualizarViagem() {
                 Suporte / Emergência
               </h3>
               <div className="space-y-3 text-sm">
-                <div className="flex items-center">
-                  <span className="w-8 text-center mr-2">📞</span>
+                <div className="flex items-center gap-2">
+                  <BsFillTelephoneFill className="text-lg" />
                   <span className="text-gray-700">(11) 4002-8922</span>
                 </div>
-                <div className="flex items-center">
-                  <span className="w-8 text-center mr-2">✉️</span>
+                <div className="flex items-center gap-2">
+                  <MdEmail className="text-lg" />
                   <span className="text-gray-700">
                     contato@destinoviagens.com
                   </span>
