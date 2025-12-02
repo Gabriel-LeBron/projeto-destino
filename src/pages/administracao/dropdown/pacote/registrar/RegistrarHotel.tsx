@@ -193,12 +193,17 @@ export default function RegistrarHotel() {
   };
 
   if (loading) return <div className="p-8">Carregando...</div>;
+  
+  // Estilo unificado para inputs (suave e moderno)
+  const inputStyle = "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-800";
+  const selectStyle = "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none disabled:bg-gray-100 text-gray-800";
+
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
       
       <h1 className="text-3xl font-bold mb-6 flex items-center space-x-3 text-gray-900">
-        <FaHotel className="text-3xl" />
+        <FaHotel className="text-2xl" />
         <span>{isEditing ? "Editar Hotel" : "Novo Hotel"}</span>
       </h1>
 
@@ -212,7 +217,7 @@ export default function RegistrarHotel() {
             type="text"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            className="w-full border p-2 rounded"
+            className={inputStyle}
             placeholder="Ex: Hotel Copacabana Palace"
           />
         </div>
@@ -226,7 +231,7 @@ export default function RegistrarHotel() {
             type="text"
             value={endereco}
             onChange={(e) => setEndereco(e.target.value)}
-            className="w-full border p-2 rounded"
+            className={inputStyle}
             placeholder="Av. Atlântica, 1702"
           />
         </div>
@@ -240,7 +245,7 @@ export default function RegistrarHotel() {
             type="number"
             value={diaria}
             onChange={(e) => setDiaria(Number(e.target.value))}
-            className="w-full border p-2 rounded"
+            className={inputStyle}
           />
         </div>
 
@@ -263,7 +268,7 @@ export default function RegistrarHotel() {
                   setSelectedEstado("");
                   setSelectedCidade("");
                 }}
-                className="w-full border p-2 rounded"
+                className={selectStyle}
               >
                 <option value="">Selecione a Região...</option>
                 {regioes.map((r) => (
@@ -285,7 +290,7 @@ export default function RegistrarHotel() {
                   setSelectedEstado(Number(e.target.value));
                   setSelectedCidade("");
                 }}
-                className="w-full border p-2 rounded disabled:bg-gray-100"
+                className={selectStyle}
                 disabled={!selectedRegiao}
               >
                 <option value="">Selecione o Estado...</option>
@@ -304,7 +309,7 @@ export default function RegistrarHotel() {
               <select
                 value={selectedCidade}
                 onChange={(e) => setSelectedCidade(Number(e.target.value))}
-                className="w-full border p-2 rounded disabled:bg-gray-100"
+                className={selectStyle}
                 disabled={!selectedEstado}
               >
                 <option value="">Selecione a Cidade...</option>

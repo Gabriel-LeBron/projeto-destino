@@ -6,7 +6,7 @@ import { ROUTES } from "@/paths";
 import { useState, useEffect } from "react";
 import { MdOutlineTravelExplore } from "react-icons/md";
 
-// ... [Interface Pacote e demais imports] ...
+// ... [Interface Pacote permanece igual] ...
 
 export interface Pacote {
   id: number;
@@ -129,28 +129,35 @@ export default function LandingPage() {
             Confira Nossos Pacotes
           </h2>
 
-          <div className="mb-4">
-                  {/* 💡 AQUI A FUNÇÃO handleSearchSubmit É USADA */}
-                  <form onSubmit={handleSearchSubmit} className="flex gap-4"> 
-                    <div className="flex-1 relative">
-                      <MdOutlineTravelExplore className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
-                      <input
-                        type="text"
-                        value={termoBusca}
-                        onChange={(e) => setTermoBusca(e.target.value)}
-                        placeholder="Busque por destino ou nome do pacote..."
-                        className="w-full pl-12 pr-6 py-4 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-lg"
-                      />
-                    </div>
-                    {/* Adicione um botão de SUBMIT (ou use Enter no campo de input) para disparar a busca */}
-                    <button
-                      type="submit"
-                      className="bg-[#2071b3] text-white py-4 px-6 rounded-xl shadow-lg transition duration-300 hover:bg-blue-800"
-                    >
-                      Buscar
-                    </button>
-                  </form>
-                </div>
+          {/* 💡 INÍCIO DAS ALTERAÇÕES VISUAIS DA BARRA DE PESQUISA */}
+          <div className="mb-8 max-w-2xl mx-auto px-4"> 
+            {/* Título com ícone */}
+            <div className="flex items-center text-lg font-semibold text-gray-700 mb-2 space-x-2 justify-center">
+              <MdOutlineTravelExplore className="text-xl" />
+              <span>Procurar Viagens</span>
+            </div>
+
+            {/* Formulário de busca: flex gap-4 para input e botão */}
+            <form onSubmit={handleSearchSubmit} className="flex gap-4"> 
+              <div className="flex-1 relative">
+                <input
+                  type="text"
+                  value={termoBusca}
+                  onChange={(e) => setTermoBusca(e.target.value)}
+                  placeholder="Ex.: Pacote Fernando de Noronha"
+                  className="w-full pl-12 pr-6 py-3 border border-gray-300 rounded-xl shadow-md focus:ring-2 focus:ring-blue-500 outline-none text-lg text-gray-800"
+                />
+              </div>
+              
+              <button
+                type="submit"
+                className="bg-[#2071b3] text-white py-3 px-6 rounded-xl shadow-lg transition duration-300 hover:bg-blue-800 font-semibold"
+              >
+                Buscar
+              </button>
+            </form>
+          </div>
+         
 
           <div className="flex justify-center gap-6 flex-wrap px-4">
             {pacotes.map((data) => (

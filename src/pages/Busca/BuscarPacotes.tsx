@@ -123,20 +123,33 @@ export default function BuscarPacotes() {
       <div className="flex-1 p-4 md:p-8 overflow-y-auto h-screen">
         {loading && <div className="text-center p-10">Carregando...</div>}
 
-        <div className="mb-8">
+        {/* 💡 INÍCIO DA BARRA DE PESQUISA ATUALIZADA */}
+        <div className="mb-8 max-w-3xl"> 
+          <div className="flex items-center text-lg font-semibold text-gray-700 mb-2 space-x-2">
+            <MdOutlineTravelExplore className="text-xl" />
+            <span>Procurar Viagens</span>
+          </div>
+
           <form onSubmit={(e) => e.preventDefault()} className="flex gap-4">
             <div className="flex-1 relative">
-              <MdOutlineTravelExplore className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
               <input
                 type="text"
                 value={termoBusca}
                 onChange={(e) => setTermoBusca(e.target.value)}
-                placeholder="Busque por destino ou nome do pacote..."
-                className="w-full pl-12 pr-6 py-4 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-lg"
+                placeholder="Ex.: Pacote Fernando de Noronha"
+                className="w-full pl-12 pr-6 py-3 border border-gray-300 rounded-xl shadow-md focus:ring-2 focus:ring-blue-500 outline-none text-lg text-gray-800"
               />
             </div>
+            
+            <button
+              type="submit"
+              className="bg-[#2071b3] text-white py-3 px-6 rounded-xl shadow-lg transition duration-300 hover:bg-blue-800 font-semibold"
+            >
+              Buscar
+            </button>
           </form>
         </div>
+        {/* FIM DA BARRA DE PESQUISA ATUALIZADA */}
 
         {!loading && !erro && topPacotes.length > 0 && (
           <section className="mb-12">
