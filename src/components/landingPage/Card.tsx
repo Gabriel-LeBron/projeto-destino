@@ -1,46 +1,46 @@
 interface CardProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  detalhar: () => void;
+ title: string;
+ description: string;
+ imageUrl: string;
+ detalhar: () => void;
 }
 
 export default function Card({
-  title,
-  description,
-  imageUrl,
-  detalhar,
+ title,
+ description,
+ imageUrl,
+ detalhar,
 }: CardProps) {
-  return (
-    <div
-      className="border-2 border-gray-300 bg-white w-full sm:max-w-sm m-1 
-    flex flex-col overflow-hidden rounded-xl shadow-xl transition transform hover:scale-[1.02]"
-    >
-      {imageUrl && (
-        <img
-          className="w-full h-48 object-cover"
-          src={imageUrl}
-          alt={`Viagem para ${title}`}
-        />
-      )}
+ return (
+  <div
+   className="border-2 border-gray-300 bg-white w-full sm:max-w-sm m-1 
+  flex flex-col overflow-hidden rounded-xl shadow-xl transition transform hover:scale-[1.02]"
+  >
+   {imageUrl && (
+    <img
+     className="w-full h-48 object-cover"
+     src={imageUrl}
+     alt={`Viagem para ${title}`}
+    />
+   )}
 
-      <div className="p-5 flex flex-col justify-between"> 
-        <div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
+   <div className="p-5 flex flex-col justify-between"> 
+    <div>
+     <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
 
-          <p className="text-sm text-gray-600 mb-4 line-clamp-2 h-10">
-            {description}
-          </p>
-        </div>
+     <p className="text-sm text-gray-600 mb-4 line-clamp-2 h-10">
+      {description}
+     </p>
+    </div>
 
-        <button
-          className="mt-4 w-full bg-[#2071b3] text-white py-2.5 px-6 cursor-pointer
-        rounded-lg transition duration-300 hover:bg-blue-800 shadow-md"
-          onClick={detalhar}
-        >
-          Saiba Mais...
-        </button>
-      </div>
-    </div>
-  );
+    <button
+     className="mt-4 w-full bg-[#2071b3] text-white py-2.5 px-6 cursor-pointer
+    rounded-lg transition duration-300 hover:bg-blue-800 shadow-md"
+     onClick={detalhar}
+    >
+     Saiba Mais...
+    </button>
+   </div>
+  </div>
+ );
 }
