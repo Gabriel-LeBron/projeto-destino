@@ -423,7 +423,9 @@ export default function RegistrarPacote() {
               className="px-6 py-3 bg-blue-700 text-white rounded-lg font-bold shadow-md transition-colors hover:bg-blue-500 flex items-center space-x-1"
             >
               <LuPackagePlus className="text-lg" />
-              <span>{modoEdicao ? "Salvar Alterações" : "Cadastrar Pacote"}</span>
+              <span>
+                {modoEdicao ? "Salvar Alterações" : "Cadastrar Pacote"}
+              </span>
             </button>
           </div>
         </div>
