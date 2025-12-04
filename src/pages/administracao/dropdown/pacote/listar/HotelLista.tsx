@@ -81,6 +81,32 @@ export default function HotelLista() {
     }
   }, [usuario, isLoading]);
 
+  const fetchHoteis = async () => {
+    if (!usuario || !usuario.accessToken) return;
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/hotel", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Erro ao buscar hotéis");
+
+      const result = await response.json();
+      setHoteis(result);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleEdit = (id: number) => {
     navigate(ROUTES.EDITAR_HOTEL.replace(":id", String(id)));
   };

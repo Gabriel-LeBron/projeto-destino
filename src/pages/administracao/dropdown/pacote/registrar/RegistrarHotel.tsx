@@ -164,7 +164,7 @@ export default function RegistrarHotel() {
     };
 
     try {
-      const url = isEditing ? `/api/hotel/${id}` : "/api/hotel/";
+      const url = isEditing ? `/api/hotel/${id}` : "/api/hotel";
       const method = isEditing ? "PUT" : "POST";
 
       const response = await fetch(url, {

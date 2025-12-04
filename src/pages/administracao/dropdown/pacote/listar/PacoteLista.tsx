@@ -28,7 +28,7 @@ export default function PacoteLista() {
   const { usuario, isLoading } = useSession();
   const navigate = useNavigate();
   const [grupos, setGrupos] = useState<PacotesAgrupados>({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [abertos, setAbertos] = useState<Record<string, boolean>>({});
 
   const formatarValor = (valor: number) => {
@@ -221,7 +221,7 @@ export default function PacoteLista() {
               </div>
             ))}
 
-            {Object.keys(grupos).length === 0 && (
+            {!isLoading && Object.keys(grupos).length === 0 && (
               <div className="text-center py-10 text-gray-500">
                 Nenhum pacote cadastrado.
               </div>

@@ -54,7 +54,7 @@ export default function DataList<T extends DataItem>({
       ) : data.length === 0 ? (
         <p className="text-gray-500">Nenhum dado encontrado.</p>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="max-h-200 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>

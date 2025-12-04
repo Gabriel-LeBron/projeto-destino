@@ -62,6 +62,32 @@ export default function TransporteLista() {
     // OBS: Removido `setLoading(false);` do final do useEffect para evitar estado inconsistente.
   }, [usuario, isLoading]); // Dependências ok
 
+  const fetchHoteis = async () => {
+    if (!usuario || !usuario.accessToken) return;
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/transporte", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Erro ao buscar hotéis");
+
+      const result = await response.json();
+      setTransportes(result);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleEdit = (id: number) => {
     navigate(ROUTES.EDITAR_TRANSPORTE.replace(":id", String(id)));
   };
