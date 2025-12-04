@@ -24,6 +24,7 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
   data,
   colors,
 }) => {
+  const total = data.reduce((acc, item) => acc + item.value, 0);
   return (
     <div className="bg-white rounded-lg shadow-md border border-gray-200">
       <div className="p-6 border-b border-gray-200">
@@ -31,6 +32,7 @@ export const PieChartComponent: React.FC<PieChartComponentProps> = ({
       </div>
       <div className="p-6">
         <div className="h-80">
+          <h3 className="font-bold">Total: {total}</h3>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie

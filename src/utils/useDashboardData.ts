@@ -1,5 +1,5 @@
 import { useSession } from "@/store/sessionStore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type SetStateAction, type Dispatch } from "react";
 
 export interface ChartData {
   name: string;
@@ -18,6 +18,8 @@ interface DashboardDataState {
 export const useDashboardData = () => {
   // 1. Pegamos o token atual da sessão
   const { usuario } = useSession();
+  const [viagensYear, setViagensYear] = useState(new Date().getFullYear());
+  const [comprasYear, setcomprasYear] = useState(new Date().getFullYear());
 
   const [data, setData] = useState<DashboardDataState>({
     statusData: [],
@@ -48,8 +50,8 @@ export const useDashboardData = () => {
         const urls = [
           "/api/dashboard/status-viagem",
           "/api/dashboard/transporte-stats",
-          "/api/dashboard/viagens/mensais",
-          "/api/dashboard/viagens/vendidos",
+          `/api/dashboard/viagens/mensais?ano=${viagensYear}`,
+          `/api/dashboard/viagens/vendidos?ano=${comprasYear}`,
         ];
 
         // 4. Executa o Promise.all mapeando as URLs e aplicando as opções
@@ -89,7 +91,7 @@ export const useDashboardData = () => {
     };
 
     fetchData();
-  }, [usuario?.accessToken]); // 6. Reexecuta se o token mudar (ex: refresh ou login)
+  }, [usuario?.accessToken, viagensYear, comprasYear]);
 
-  return data;
+  return { data, viagensYear, setViagensYear, comprasYear, setcomprasYear };
 };
