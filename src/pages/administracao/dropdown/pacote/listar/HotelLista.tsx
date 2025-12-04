@@ -5,50 +5,50 @@ import DataList from "@/components/administracao/lista/dataList";
 import { useSession } from "@/store/sessionStore";
 
 interface cidade {
-  id: number;
-  nome: String;
-  endereco: String;
-  diaria: number;
-  estado: {
-    id: number;
-    nome: String;
-    sigla: String;
-    regiao: {
-      id: number;
-      nome: String;
-      sigla: String;
-    };
-  };
+  id: number;
+  nome: String;
+  endereco: String;
+  diaria: number;
+  estado: {
+    id: number;
+    nome: String;
+    sigla: String;
+    regiao: {
+      id: number;
+      nome: String;
+      sigla: String;
+    };
+  };
 }
 
 interface Hotel {
-  id: number;
-  nome: string;
-  diaria: number;
-  cidade: cidade;
+  id: number;
+  nome: string;
+  diaria: number;
+  cidade: cidade;
 }
 
 const renderHotelValue = (hotel: Hotel, key: string) => {
-  switch (key) {
-    case "local":
-      return hotel.cidade
-        ? `${hotel.cidade.nome}/${hotel.cidade.estado.sigla}`
-        : "-";
-    case "diaria":
-      return `R$ ${hotel.diaria.toFixed(2).replace(".", ",")}`;
-    default:
-      return hotel[key as keyof Hotel] as React.ReactNode;
-  }
+  switch (key) {
+    case "local":
+      return hotel.cidade
+        ? `${hotel.cidade.nome}/${hotel.cidade.estado.sigla}`
+        : "-";
+    case "diaria":
+      return `R$ ${hotel.diaria.toFixed(2).replace(".", ",")}`;
+    default:
+      return hotel[key as keyof Hotel] as React.ReactNode;
+  }
 };
 
 const hotelHeaders = ["ID", "Nome", "Local", "Diária"];
 const hotelKeys = ["id", "nome", "local", "diaria"];
 
 export default function HotelLista() {
-  const navigate = useNavigate();
-  const { usuario, isLoading } = useSession();
-  const [hoteis, setHoteis] = useState<Hotel[]>([]);
-  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const { usuario, isLoading } = useSession();
+  const [hoteis, setHoteis] = useState<Hotel[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchHoteis = async () => {
     if (!usuario || !usuario.accessToken) return;
@@ -75,64 +75,66 @@ export default function HotelLista() {
     }
   };
 
-  useEffect(() => {
-    if (!isLoading && usuario) {
-      fetchHoteis();
-    }
-  }, [usuario, isLoading]);
+  useEffect(() => {
+    if (!isLoading && usuario) {
+      fetchHoteis();
+    }
+  }, [usuario, isLoading]);
 
-  const handleEdit = (id: number) => {
-    navigate(ROUTES.EDITAR_HOTEL.replace(":id", String(id)));
-  };
+  const handleEdit = (id: number) => {
+    navigate(ROUTES.EDITAR_HOTEL.replace(":id", String(id)));
+  };
 
-  const handleDelete = async (id: number) => {
-    if (!usuario || !usuario.accessToken) return;
-    if (!window.confirm("Deseja realmente excluir este hotel?")) return;
+  const handleDelete = async (id: number) => {
+    if (!usuario || !usuario.accessToken) return;
+    if (!window.confirm("Deseja realmente excluir este hotel?")) return;
 
-    try {
-      const response = await fetch(`/api/hotel/${id}`, { 
+    try {
+      const response = await fetch(`/api/hotel/${id}`, {
         method: "DELETE",
         headers: {
-            "Authorization": `Bearer ${usuario.accessToken}`,
+          Authorization: `Bearer ${usuario.accessToken}`,
         },
       });
 
-      if (response.ok) {
-        alert("Hotel excluído com sucesso!");
-        fetchHoteis();
-      } else {
-        const msg = await response.text();
-        alert(`Erro: ${msg}`);
-      }
-    } catch (error) {
-      alert("Erro de conexão ao tentar excluir.");
-    }
-  };
+      if (response.ok) {
+        alert("Hotel excluído com sucesso!");
+        fetchHoteis();
+      } else {
+        const msg = await response.text();
+        alert(`Erro: ${msg}`);
+      }
+    } catch (error) {
+      alert("Erro de conexão ao tentar excluir.");
+    }
+  };
 
-  const hotelActions = [
-    {
-      name: "Editar",
-      colorClass: "bg-blue-700 text-white hover:bg-blue-500 p-2 rounded-md transition-colors",
-      handler: handleEdit,
-    },
-    {
-      name: "Excluir",
-      colorClass: "bg-red-600 text-white hover:bg-red-500 p-2 rounded-md transition-colors",
-      handler: handleDelete,
-    },
-  ];
+  const hotelActions = [
+    {
+      name: "Editar",
+      colorClass:
+        "bg-blue-700 text-white hover:bg-blue-500 p-2 rounded-md transition-colors",
+      handler: handleEdit,
+    },
+    {
+      name: "Excluir",
+      colorClass:
+        "bg-red-600 text-white hover:bg-red-500 p-2 rounded-md transition-colors",
+      handler: handleDelete,
+    },
+  ];
 
-  return (
-    <DataList<Hotel>
-      loading={loading}
-      pageTitle="Gerenciar Hotéis"
-      buttonText="Novo Hotel"
-      registerPath={ROUTES.REGISTRAR_HOTEL}
-      data={hoteis}
-      headers={hotelHeaders}
-      dataKeys={hotelKeys}
-      renderValue={renderHotelValue}
-      actions={hotelActions}
-    />
-  );
+  return (
+    <DataList<Hotel>
+      loading={loading}
+      pageTitle="Gerenciar Hotéis"
+      buttonText="Novo Hotel"
+      registerPath={ROUTES.REGISTRAR_HOTEL}
+      data={hoteis}
+      headers={hotelHeaders}
+      dataKeys={hotelKeys}
+      renderValue={renderHotelValue}
+      actions={hotelActions}
+    />
+  );
 }
