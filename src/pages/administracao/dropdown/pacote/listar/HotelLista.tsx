@@ -4,6 +4,8 @@ import { ROUTES } from "@/paths";
 import DataList from "@/components/administracao/lista/dataList";
 import { useSession } from "@/store/sessionStore";
 
+// --- Interfaces ---
+
 interface cidade {
   id: number;
   nome: String;
@@ -28,6 +30,8 @@ interface Hotel {
   cidade: cidade;
 }
 
+// --- Funções Auxiliares ---
+
 const renderHotelValue = (hotel: Hotel, key: string) => {
   switch (key) {
     case "local":
@@ -35,6 +39,7 @@ const renderHotelValue = (hotel: Hotel, key: string) => {
         ? `${hotel.cidade.nome}/${hotel.cidade.estado.sigla}`
         : "-";
     case "diaria":
+      // Formata a diária para Real Brasileiro (R$ 0,00)
       return `R$ ${hotel.diaria.toFixed(2).replace(".", ",")}`;
     default:
       return hotel[key as keyof Hotel] as React.ReactNode;
@@ -44,23 +49,19 @@ const renderHotelValue = (hotel: Hotel, key: string) => {
 const hotelHeaders = ["ID", "Nome", "Local", "Diária"];
 const hotelKeys = ["id", "nome", "local", "diaria"];
 
+// --- Componente Principal ---
+
 export default function HotelLista() {
   const navigate = useNavigate();
   const { usuario, isLoading } = useSession();
   const [hoteis, setHoteis] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (!isLoading && usuario) {
-      fetchHoteis();
-    }
-  }, [usuario, isLoading]);
-
+  // Função única para buscar os hotéis
   const fetchHoteis = async () => {
     if (!usuario || !usuario.accessToken) return;
 
     setLoading(true);
-
     try {
       const response = await fetch("/api/hotel", {
         method: "GET",
@@ -82,19 +83,35 @@ export default function HotelLista() {
     }
   };
 
+  // Chama fetchHoteis ao carregar o componente ou quando o usuário/loading muda
+  useEffect(() => {
+    if (!isLoading && usuario) {
+      // É necessário incluir 'fetchHoteis' nas dependências
+      // para satisfazer as regras do React Hooks (ESLint)
+      fetchHoteis();
+    }
+  }, [usuario, isLoading, fetchHoteis]);
+
   const handleEdit = (id: number) => {
     navigate(ROUTES.EDITAR_HOTEL.replace(":id", String(id)));
   };
 
   const handleDelete = async (id: number) => {
+    if (!usuario || !usuario.accessToken) return;
     if (!window.confirm("Deseja realmente excluir este hotel?")) return;
 
     try {
-      const response = await fetch(`/api/hotel/${id}`, { method: "DELETE" });
+      const response = await fetch(`/api/hotel/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+      });
 
       if (response.ok) {
         alert("Hotel excluído com sucesso!");
-        fetchHoteis();
+        // Atualiza a lista após a exclusão
+        fetchHoteis(); 
       } else {
         const msg = await response.text();
         alert(`Erro: ${msg}`);
@@ -107,12 +124,14 @@ export default function HotelLista() {
   const hotelActions = [
     {
       name: "Editar",
-      colorClass: "text-white bg-blue-600 hover:bg-blue-800",
+      colorClass:
+        "bg-blue-700 text-white hover:bg-blue-500 p-2 rounded-md transition-colors",
       handler: handleEdit,
     },
     {
       name: "Excluir",
-      colorClass: "text-white bg-red-600 hover:bg-red-800",
+      colorClass:
+        "bg-red-600 text-white hover:bg-red-500 p-2 rounded-md transition-colors",
       handler: handleDelete,
     },
   ];

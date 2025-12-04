@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
-import { FaMoneyCheckAlt } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
+
+import { FaMoneyCheckAlt, FaUser } from "react-icons/fa";
 import { PiPackageBold } from "react-icons/pi";
 
 export default function CheckoutPage() {

@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
-import { FaMapMarkedAlt } from "react-icons/fa";
+
+import { FaMapMarkedAlt, FaHotel } from "react-icons/fa";
 import { RiMapPinAddFill } from "react-icons/ri";
+import { IoIosArrowDropupCircle } from "react-icons/io";
+import { MdOutlineMyLocation } from "react-icons/md";
+import { FaTruckPlane } from "react-icons/fa6";
 
 interface Pacote {
   id: number;
@@ -34,36 +38,35 @@ export default function PacoteLista() {
     }).format(valor);
   };
 
+  const fetchHoteis = async () => {
+    if (!usuario || !usuario.accessToken) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/pacote/agrupado-admin", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Erro ao buscar hotéis");
+
+      const result = await response.json();
+      setGrupos(result);
+      const initialOpenState: Record<string, boolean> = {};
+      Object.keys(result).forEach((key) => (initialOpenState[key] = true));
+      setAbertos(initialOpenState);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchHoteis = async () => {
-      if (!usuario || !usuario.accessToken) return;
-
-      setLoading(true);
-
-      try {
-        const response = await fetch("/api/pacote/agrupado-admin", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${usuario.accessToken}`,
-          },
-          credentials: "include",
-        });
-
-        if (!response.ok) throw new Error("Erro ao buscar hotéis");
-
-        const result = await response.json();
-        setGrupos(result);
-        const initialOpenState: Record<string, boolean> = {};
-        Object.keys(result).forEach((key) => (initialOpenState[key] = true));
-        setAbertos(initialOpenState);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (!isLoading && usuario) {
       fetchHoteis();
     }
@@ -78,8 +81,8 @@ export default function PacoteLista() {
     navigate(ROUTES.EDITAR_VIAGEM.replace(":id", String(viagemId)));
   };
 
-  const handleVisualizar = (PacoteNome: string) => {
-    navigate(ROUTES.PACOTE_DETALHES.replace(":nome", PacoteNome));
+  const handleVisualizar = (viagemId: number) => {
+    navigate(ROUTES.PACOTE_DETALHES.replace(":id", String(viagemId)));
   };
 
   const getStatusBadge = (status: string) => {
@@ -111,15 +114,13 @@ export default function PacoteLista() {
     <div className="min-h-screen bg-gray-50 flex">
       <div className="flex-1 p-8">
         <div className="flex justify-between items-center mb-8">
-          {/* Título: Alinhamento do ícone e texto na mesma linha */}
           <h1 className="text-2xl font-bold text-gray-900 flex items-center space-x-2">
             <FaMapMarkedAlt className="text-3xl" />
             <span>Gerenciar Pacotes de Viagem</span>
           </h1>
-          {/* Botão Adicionar: Alinhamento e hover verde */}
           <button
             onClick={() => navigate(ROUTES.CADASTRAR_VIAGEM)}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-sm flex items-center space-x-2 justify-center"
+            className="bg-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-500 transition-colors shadow-sm flex items-center space-x-2 justify-center"
           >
             <RiMapPinAddFill className="text-lg" />
             <span>Adicionar Pacote de Viagens</span>
@@ -135,7 +136,6 @@ export default function PacoteLista() {
                 key={local}
                 className="bg-white rounded-lg shadow border border-gray-200 overflow-hidden"
               >
-                {/* Cabeçalho do Grupo (Local) */}
                 <div
                   className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center cursor-pointer hover:bg-gray-100 transition-colors"
                   onClick={() => toggleGrupo(local)}
@@ -145,10 +145,11 @@ export default function PacoteLista() {
                       className="text-xl transform transition-transform duration-200"
                       style={{ rotate: abertos[local] ? "180deg" : "0deg" }}
                     >
-                      ▼
+                      <IoIosArrowDropupCircle className="text-lg" />
                     </span>
-                    <h2 className="text-lg font-bold text-gray-800">
-                      📍 {local}
+                    <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+                      <MdOutlineMyLocation className="text-xl" />
+                      {local}
                     </h2>
                     <span className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs">
                       {pacotes.length} pacotes
@@ -156,7 +157,6 @@ export default function PacoteLista() {
                   </div>
                 </div>
 
-                {/* Lista de Pacotes (Expandível) */}
                 {abertos[local] && (
                   <div className="divide-y divide-gray-100">
                     {pacotes.map((pacote) => (
@@ -177,8 +177,14 @@ export default function PacoteLista() {
                           </p>
 
                           <div className="flex gap-4 text-sm text-gray-500">
-                            <span>🏨 {pacote.hotel?.nome}</span>
-                            <span>✈️ {pacote.transporte?.meio}</span>
+                            <span className="flex items-center gap-1">
+                              <FaHotel className="text-lg" />
+                              {pacote.hotel?.nome}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <FaTruckPlane className="text-lg" />
+                              {pacote.transporte?.meio}
+                            </span>
                           </div>
                         </div>
 

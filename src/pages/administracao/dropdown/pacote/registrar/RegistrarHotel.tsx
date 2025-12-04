@@ -2,16 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
-import { FaHotel } from "react-icons/fa6";
-import { TbPencilPin } from "react-icons/tb";
-import { MdOutlineMyLocation } from "react-icons/md";
-import { FaMoneyCheckAlt } from "react-icons/fa";
-import { RiTreasureMapFill } from "react-icons/ri";
-import { FaSearchLocation } from "react-icons/fa";
-import { FaFlag } from "react-icons/fa";
+
+import { FaHotel, FaMoneyCheckAlt, FaSearchLocation, FaFlag } from "react-icons/fa";
 import { FaTreeCity } from "react-icons/fa6";
-import { TbBuildingOff } from "react-icons/tb";
-import { TbBuildingPlus } from "react-icons/tb";
+import { TbPencilPin, TbBuildingOff, TbBuildingPlus } from "react-icons/tb";
+import { MdOutlineMyLocation } from "react-icons/md";
+import { RiTreasureMapFill } from "react-icons/ri";
 
 interface Regiao {
   id: number;
@@ -327,7 +323,7 @@ export default function RegistrarHotel() {
         <div className="flex justify-end gap-2 mt-6">
           <button
             onClick={() => navigate(-1)}
-            className="px-4 py-2 rounded font-medium text-white bg-red-600 hover:bg-red-800 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 rounded text-white font-medium bg-red-600 transition-colors hover:bg-red-500 flex items-center space-x-2"
           >
             <TbBuildingOff className="text-lg" />
             <span>Cancelar</span>
@@ -335,7 +331,7 @@ export default function RegistrarHotel() {
 
           <button
             onClick={handleSalvar}
-            className="px-4 py-2 rounded font-medium text-white bg-blue-600 hover:bg-blue-800 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 rounded text-white font-medium bg-blue-700 transition-colors hover:bg-blue-500 flex items-center space-x-2"
           >
             <TbBuildingPlus className="text-lg" />
             <span>Salvar</span>

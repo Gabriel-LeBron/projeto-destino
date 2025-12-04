@@ -61,14 +61,13 @@ export default function DataList<T extends DataItem>({
                 {headers.map((header, index) => (
                   <th
                     key={index}
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     {header}
                   </th>
                 ))}
-                {/* Cabeçalho de Ações (Fixo) */}
                 {actions.length > 0 && (
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Ações
                   </th>
                 )}
@@ -77,11 +76,10 @@ export default function DataList<T extends DataItem>({
             <tbody className="bg-white divide-y divide-gray-200">
               {data.map((item) => (
                 <tr key={item.id}>
-                  {/* Células de Dados */}
                   {dataKeys.map((key, index) => (
                     <td
                       key={index}
-                      className={`px-6 py-4 whitespace-nowrap text-sm ${
+                      className={`px-4 py-2 whitespace-nowrap text-sm ${
                         index === 1
                           ? "font-medium text-gray-900"
                           : "text-gray-500"
@@ -91,19 +89,20 @@ export default function DataList<T extends DataItem>({
                     </td>
                   ))}
 
-                  {/* Células de Ações Dinâmicas */}
                   {actions.length > 0 && (
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      {actions.map((action, index) => (
-                        <button
-                          key={index}
-                          onClick={() => action.handler(item.id, item)}
-                          className={`${action.colorClass} mr-4 last:mr-0 flex-1 px-3 py-1.5 text-sm rounded`}
-                        >
-                          {action.icon}
-                          {action.name}
-                        </button>
-                      ))}
+                    <td className="px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
+                      <div className="flex justify-end items-center space-x-1">
+                        {actions.map((action, index) => (
+                          <button
+                            key={index}
+                            onClick={() => action.handler(item.id, item)}
+                            className={`${action.colorClass}`}
+                          >
+                            {action.icon}
+                            {action.name}
+                          </button>
+                        ))}
+                      </div>
                     </td>
                   )}
                 </tr>

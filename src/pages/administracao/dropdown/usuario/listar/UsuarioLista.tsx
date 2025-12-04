@@ -32,7 +32,34 @@ export default function UsuarioLista() {
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchUsuariosInvalidos = async () => {
+    if (!usuario || !usuario.accessToken) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/usuario/invalidos", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Erro ao buscar usuários inválidos");
+
+      const result = await response.json();
+      setUsuarios(result);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const ValidarUsuario = async (id: number) => {
+    if (!usuario || !usuario.accessToken) return;
+
     setLoading(true);
     try {
       const response = await fetch(`/api/usuario/validar/${id}`, {
@@ -40,12 +67,13 @@ export default function UsuarioLista() {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${usuario?.accessToken}`,
+          Authorization: `Bearer ${usuario.accessToken}`,
         },
       });
 
       if (response.ok) {
         alert("Usuário validado com sucesso!");
+        fetchUsuariosInvalidos();
       } else {
         const msg = await response.text();
         alert(`Erro ao validar: ${msg}`);
@@ -57,45 +85,25 @@ export default function UsuarioLista() {
   };
 
   useEffect(() => {
-    setLoading(true);
-    const fetchHoteis = async () => {
-      if (!usuario || !usuario.accessToken) return;
-
-      setLoading(true);
-      try {
-        const response = await fetch("/api/usuario/invalidos", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${usuario.accessToken}`,
-          },
-          credentials: "include",
-        });
-
-        if (!response.ok) throw new Error("Erro ao buscar hotéis");
-
-        const result = await response.json();
-        setUsuarios(result);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (!isLoading && usuario) {
-      fetchHoteis();
+      fetchUsuariosInvalidos();
     }
-    setLoading(false);
   }, [usuario, isLoading]);
 
   const usuarioActions = [
     {
       name: "Validar",
-      colorClass: "text-white bg-blue-600 hover:bg-blue-800",
+      colorClass:
+        "bg-blue-600 text-white hover:bg-blue-500 p-2 rounded-md transition-colors",
       handler: ValidarUsuario,
     },
   ];
+
+  if (loading) {
+    return (
+      <p className="text-center py-10 text-gray-500">Carregando usuários...</p>
+    );
+  }
 
   if (usuarios.length <= 0) {
     return (

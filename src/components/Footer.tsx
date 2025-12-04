@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
 import logo from "/LogoPaulaViagensVetor_2.png";
-import { PiMapPinAreaFill } from "react-icons/pi";
-import { MdContactMail } from "react-icons/md";
-import { RiUserFollowFill } from "react-icons/ri";
 
+import { PiMapPinAreaFill, PiInstagramLogoFill } from "react-icons/pi";
+import { MdContactMail, MdEmail, MdPlace } from "react-icons/md";
+import { RiUserFollowFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { MdEmail } from "react-icons/md";
-import { MdPlace } from "react-icons/md";
 import { FaFacebookSquare } from "react-icons/fa";
-import { PiInstagramLogoFill } from "react-icons/pi";
 
 export default function Footer() {
   return (

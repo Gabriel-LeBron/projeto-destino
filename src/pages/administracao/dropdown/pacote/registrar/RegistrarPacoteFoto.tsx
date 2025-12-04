@@ -2,15 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
-import { HiMiniCamera } from "react-icons/hi2";
-import { TbCameraCancel } from "react-icons/tb";
-import { TbPencilPin } from "react-icons/tb";
+
 import { FaLink } from "react-icons/fa";
+import { HiMiniCamera } from "react-icons/hi2";
+import { TbCameraCancel, TbPencilPin, TbPhotoShare } from "react-icons/tb";
 import { IoMdPhotos } from "react-icons/io";
 import { BiSolidPencil } from "react-icons/bi";
-import { MdCancel } from "react-icons/md";
-import { MdOutlineAddPhotoAlternate } from "react-icons/md";
-import { TbPhotoShare } from "react-icons/tb";
+import { MdCancel, MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 interface FotoAdicional {
   nome: string;
@@ -141,7 +139,7 @@ export default function RegistrarPacoteFoto() {
             </h1>
             <button
               onClick={() => navigate(-1)}
-              className="px-4 py-2 text-white bg-red-600 hover:bg-red-800 font-medium rounded-lg  transition-colors shadow-md flex items-center space-x-2"
+              className="px-4 py-2 bg-red-600 text-white font-medium rounded-lg hover:bg-red-500 transition-colors shadow-md flex items-center space-x-2"
             >
               <TbCameraCancel className="text-lg" />
               <span>Cancelar</span>
@@ -248,7 +246,7 @@ export default function RegistrarPacoteFoto() {
           <div className="mt-4 flex justify-end">
             <button
               onClick={adicionarCampo}
-              className="text-white bg-blue-600 hover:bg-blue-800 font-medium px-4 py-2 rounded-lg transition-colors flex items-center space-x-2 shadow-md"
+              className="font-medium px-4 py-2 rounded-lg transition-colors flex items-center space-x-2 bg-blue-700 hover:bg-blue-500 text-white shadow-md"
             >
               <MdOutlineAddPhotoAlternate className="text-lg" />
               <span>Adicionar mais 1 foto</span>
@@ -258,7 +256,7 @@ export default function RegistrarPacoteFoto() {
           <div className="mt-8 pt-6 border-t border-gray-200">
             <button
               onClick={handleSalvar}
-              className="w-full text-white bg-blue-600 hover:bg-blue-800 py-3 rounded-lg font-bold transition-colors shadow-md flex items-center justify-center space-x-2"
+              className="w-full bg-blue-700 text-white py-3 rounded-lg font-bold hover:bg-blue-500 transition-colors shadow-md flex items-center justify-center space-x-2"
             >
               <TbPhotoShare className="text-lg" />
               <span>

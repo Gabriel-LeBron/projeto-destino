@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import placeholder from "/placeholder.jpg";
+
 import { FaTreeCity } from "react-icons/fa6";
 import { FaCalendarAlt, FaMoneyCheckAlt } from "react-icons/fa";
 import { MdAirplaneTicket, MdOutlineAirplanemodeActive } from "react-icons/md";
@@ -218,8 +219,7 @@ export default function Pacote() {
                       <FaTreeCity className="text-xl" />
                     </span>
                     <span>
-                      {pacote.hotel?.cidade?.nome} -{" "}
-                      {pacote.hotel?.cidade?.estado?.sigla}
+                      {pacote.hotel?.cidade?.nome} - {pacote.hotel?.cidade?.estado?.sigla}
                     </span>
                   </div>
                   <div className="flex items-center">
@@ -227,8 +227,7 @@ export default function Pacote() {
                       <FaCalendarAlt className="text-xl" />
                     </span>
                     <span>
-                      {formatarData(pacote.inicio)} até{" "}
-                      {formatarData(pacote.fim)}
+                      {formatarData(pacote.inicio)} até {formatarData(pacote.fim)}
                     </span>
                   </div>
                   <div className="flex items-center">
