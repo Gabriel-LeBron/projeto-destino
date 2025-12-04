@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import CampoInput from "@/components/auth/CampoInput";
 import AuthLogo from "@/components/auth/AuthLogo";
 import CustomModal, { type Modal } from "@/components/CustomModal";

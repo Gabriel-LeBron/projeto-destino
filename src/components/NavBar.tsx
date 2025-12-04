@@ -2,12 +2,12 @@ import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
 import logo from "/LogoPaulaViagensVetor_2.png";
 import { Link } from "react-router-dom";
+
 import { LuPackageSearch } from "react-icons/lu";
 import { MdContactMail } from "react-icons/md";
 import { TbMapPinCog } from "react-icons/tb";
 import { FaUser } from "react-icons/fa";
-import { BiSolidLogInCircle } from "react-icons/bi";
-import { BiSolidLogOutCircle } from "react-icons/bi";
+import { BiSolidLogInCircle, BiSolidLogOutCircle } from "react-icons/bi";
 
 
 export default function Navbar() {

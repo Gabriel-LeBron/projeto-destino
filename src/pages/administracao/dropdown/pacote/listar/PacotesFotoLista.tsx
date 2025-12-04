@@ -67,7 +67,7 @@ export default function PacotesFotoLista() {
           <button
             onClick={() => navigate(ROUTES.REGISTRAR_FOTOS)}
             // Botão "Novo Pacote de Fotos" (MANTIDO)
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center space-x-2 justify-center shadow-md"
+            className="bg-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-500 transition-colors flex items-center space-x-2 justify-center shadow-md"
           >
             <TbPhotoShare className="text-lg" />
             <span>Novo Pacote de Fotos</span>
@@ -95,7 +95,6 @@ export default function PacotesFotoLista() {
                   </p>
                   <button
                     onClick={() => handleEditar(pct.id)}
-                    // ALTERAÇÕES APLICADAS AQUI: Fundo Azul e Texto Branco
                     className="w-full bg-blue-600 text-white py-2 rounded font-medium hover:bg-blue-500 transition-colors flex items-center justify-center space-x-2"
                   >
                     <BiSolidPencil className="text-lg" />

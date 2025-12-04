@@ -25,7 +25,7 @@ interface BarChartComponentProps {
 
 // Gere uma lista de anos (últimos 5 anos)
 const currentYear = new Date().getFullYear();
-const years = Array.from({ length: 5 }, (_, i) => currentYear - i);
+const years = Array.from({ length: 5 }, (_, i) => currentYear + i);
 
 export const BarChartComponent: React.FC<BarChartComponentProps> = ({
   title,

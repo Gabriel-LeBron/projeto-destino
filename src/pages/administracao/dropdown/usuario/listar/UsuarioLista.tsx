@@ -3,119 +3,124 @@ import { useSession } from "@/store/sessionStore";
 import { useEffect, useState } from "react";
 
 interface Usuario {
-  id: number;
-  nome: string;
-  cpf: string;
-  email: string;
-  telefone: string;
-  cadastro: string;
+  id: number;
+  nome: string;
+  cpf: string;
+  email: string;
+  telefone: string;
+  cadastro: string;
 }
 
 export interface InvalidUsersResponse {
-  users: Usuario[];
+  users: Usuario[];
 }
 
 const renderUserValue = (user: Usuario, key: string) => {
-  switch (key) {
-    case "cadastro":
-      return user.cadastro;
-    default:
-      return user[key as keyof Usuario];
-  }
+  switch (key) {
+    case "cadastro":
+      return user.cadastro;
+    default:
+      return user[key as keyof Usuario];
+  }
 };
 
 const userHeaders = ["Nome", "CPF", "Email", "Telefone", "Cadastro", "Valido"];
 const userKeys = ["nome", "cpf", "email", "telefone", "cadastro", "valido"];
 
 export default function UsuarioLista() {
-  const { usuario, isLoading } = useSession();
-  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { usuario, isLoading } = useSession();
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const ValidarUsuario = async (id: number) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/usuario/validar/${id}`, {
-        method: "PATCH",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${usuario?.accessToken}`,
-        },
-      });
+  const fetchUsuariosInvalidos = async () => {
+    if (!usuario || !usuario.accessToken) return;
 
-      if (response.ok) {
-        alert("Usuário validado com sucesso!");
-      } else {
-        const msg = await response.text();
-        alert(`Erro ao validar: ${msg}`);
-      }
-    } catch (error) {
-      alert("Erro de conexão ao tentar validar.");
-    }
-    setLoading(false);
-  };
+    setLoading(true);
+    try {
+      const response = await fetch("/api/usuario/invalidos", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+        credentials: "include",
+      });
 
-  useEffect(() => {
-    setLoading(true);
-    const fetchHoteis = async () => {
-      if (!usuario || !usuario.accessToken) return;
+      if (!response.ok) throw new Error("Erro ao buscar usuários inválidos");
 
-      setLoading(true);
-      try {
-        const response = await fetch("/api/usuario/invalidos", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${usuario.accessToken}`,
-          },
-          credentials: "include",
-        });
+      const result = await response.json();
+      setUsuarios(result);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (!response.ok) throw new Error("Erro ao buscar hotéis");
+  const ValidarUsuario = async (id: number) => {
+    if (!usuario || !usuario.accessToken) return;
 
-        const result = await response.json();
-        setUsuarios(result);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/usuario/validar/${id}`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+      });
 
-    if (!isLoading && usuario) {
-      fetchHoteis();
-    }
-    setLoading(false);
-  }, [usuario, isLoading]);
+      if (response.ok) {
+        alert("Usuário validado com sucesso!");
+        fetchUsuariosInvalidos();
+      } else {
+        const msg = await response.text();
+        alert(`Erro ao validar: ${msg}`);
+      }
+    } catch (error) {
+      alert("Erro de conexão ao tentar validar.");
+    }
+    setLoading(false);
+  };
 
-  const usuarioActions = [
-    {
-      name: "Validar",
-      colorClass: "text-blue-600 hover:text-blue-900",
-      handler: ValidarUsuario,
-    },
-  ];
+  useEffect(() => {
+    if (!isLoading && usuario) {
+      fetchUsuariosInvalidos();
+    }
+  }, [usuario, isLoading]);
 
-  if (usuarios.length <= 0) {
-    return (
-      <div className="text-center py-10 text-gray-500">
-        Nenhum cadastro precisando de avalição foi encontrado!
-      </div>
-    );
+  const usuarioActions = [
+    {
+      name: "Validar",
+      colorClass: "bg-blue-600 text-white hover:bg-blue-500 p-2 rounded-md transition-colors",
+      handler: ValidarUsuario,
+    },
+  ];
+
+  if (loading) {
+    return <p className="text-center py-10 text-gray-500">Carregando usuários...</p>;
   }
 
-  return (
-    <DataList<Usuario>
-      loading={loading}
-      pageTitle="Atualizar Usuários"
-      buttonText="Novo Usuário"
-      registerPath="#"
-      data={usuarios}
-      headers={userHeaders}
-      dataKeys={userKeys}
-      renderValue={renderUserValue}
-      actions={usuarioActions}
-    />
-  );
+  if (usuarios.length <= 0) {
+    return (
+      <div className="text-center py-10 text-gray-500">
+        Nenhum cadastro precisando de avalição foi encontrado!
+      </div>
+    );
+  }
+
+  return (
+    <DataList<Usuario>
+      loading={loading}
+      pageTitle="Atualizar Usuários"
+      buttonText="Novo Usuário"
+      registerPath="#"
+      data={usuarios}
+      headers={userHeaders}
+      dataKeys={userKeys}
+      renderValue={renderUserValue}
+      actions={usuarioActions}
+    />
+  );
 }

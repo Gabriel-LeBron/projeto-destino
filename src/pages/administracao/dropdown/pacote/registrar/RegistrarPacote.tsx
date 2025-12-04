@@ -1,19 +1,13 @@
-import { useSession } from "@/store/sessionStore";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { FaMapMarkedAlt } from "react-icons/fa";
-import { TbPencilPin } from "react-icons/tb";
-import { FaMoneyCheckAlt } from "react-icons/fa";
-import { MdDiversity3 } from "react-icons/md";
+import { useSession } from "@/store/sessionStore";
+
+import { FaMapMarkedAlt, FaMoneyCheckAlt } from "react-icons/fa";
+import { FaHotel, FaTruckPlane, FaTags } from "react-icons/fa6";
+import { TbPencilPin, TbCalendarUp, TbCalendarRepeat } from "react-icons/tb";
+import { MdDiversity3, MdDescription } from "react-icons/md";
 import { HiMiniCamera } from "react-icons/hi2";
-import { FaHotel } from "react-icons/fa6";
-import { FaTruckPlane } from "react-icons/fa6";
-import { MdDescription } from "react-icons/md";
-import { FaTags } from "react-icons/fa6";
-import { TbCalendarUp } from "react-icons/tb";
-import { TbCalendarRepeat } from "react-icons/tb";
-import { LuPackageX } from "react-icons/lu";
-import { LuPackagePlus } from "react-icons/lu";
+import { LuPackageX, LuPackagePlus } from "react-icons/lu";
 
 interface Hotel {
   id: number;
@@ -416,20 +410,17 @@ export default function RegistrarPacote() {
             </div>
           </div>
 
-          {/* Botões de Ação */}
           <div className="flex justify-end pt-6 border-t border-gray-200 gap-3">
-            {/* BOTÃO CANCELAR: Azul com hover Vermelho */}
             <button
               onClick={() => navigate(-1)}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-bold shadow-md transition-colors hover:bg-red-700 flex items-center space-x-1"
+              className="px-6 py-3 bg-red-600 text-white rounded-lg font-bold shadow-md transition-colors hover:bg-red-500 flex items-center space-x-1"
             >
               <LuPackageX className="text-lg" />
               <span>Cancelar</span>
             </button>
-            {/* BOTÃO SALVAR: Azul com hover Verde */}
             <button
               onClick={aoSalvar}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-bold shadow-md transition-colors hover:bg-green-700 flex items-center space-x-1"
+              className="px-6 py-3 bg-blue-700 text-white rounded-lg font-bold shadow-md transition-colors hover:bg-blue-500 flex items-center space-x-1"
             >
               <LuPackagePlus className="text-lg" />
               <span>{modoEdicao ? "Salvar Alterações" : "Cadastrar Pacote"}</span>

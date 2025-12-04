@@ -5,128 +5,134 @@ import DataList from "@/components/administracao/lista/dataList";
 import { useSession } from "@/store/sessionStore";
 
 interface cidade {
-  id: number;
-  nome: String;
-  endereco: String;
-  diaria: number;
-  estado: {
-    id: number;
-    nome: String;
-    sigla: String;
-    regiao: {
-      id: number;
-      nome: String;
-      sigla: String;
-    };
-  };
+  id: number;
+  nome: String;
+  endereco: String;
+  diaria: number;
+  estado: {
+    id: number;
+    nome: String;
+    sigla: String;
+    regiao: {
+      id: number;
+      nome: String;
+      sigla: String;
+    };
+  };
 }
 
 interface Hotel {
-  id: number;
-  nome: string;
-  diaria: number;
-  cidade: cidade;
+  id: number;
+  nome: string;
+  diaria: number;
+  cidade: cidade;
 }
 
 const renderHotelValue = (hotel: Hotel, key: string) => {
-  switch (key) {
-    case "local":
-      return hotel.cidade
-        ? `${hotel.cidade.nome}/${hotel.cidade.estado.sigla}`
-        : "-";
-    case "diaria":
-      return `R$ ${hotel.diaria.toFixed(2).replace(".", ",")}`;
-    default:
-      return hotel[key as keyof Hotel] as React.ReactNode;
-  }
+  switch (key) {
+    case "local":
+      return hotel.cidade
+        ? `${hotel.cidade.nome}/${hotel.cidade.estado.sigla}`
+        : "-";
+    case "diaria":
+      return `R$ ${hotel.diaria.toFixed(2).replace(".", ",")}`;
+    default:
+      return hotel[key as keyof Hotel] as React.ReactNode;
+  }
 };
 
 const hotelHeaders = ["ID", "Nome", "Local", "Diária"];
 const hotelKeys = ["id", "nome", "local", "diaria"];
 
 export default function HotelLista() {
-  const navigate = useNavigate();
-  const { usuario, isLoading } = useSession();
-  const [hoteis, setHoteis] = useState<Hotel[]>([]);
-  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const { usuario, isLoading } = useSession();
+  const [hoteis, setHoteis] = useState<Hotel[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchHoteis = async () => {
-      if (!usuario || !usuario.accessToken) return;
+  const fetchHoteis = async () => {
+    if (!usuario || !usuario.accessToken) return;
 
-      setLoading(true);
-      try {
-        const response = await fetch("/api/hotel", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${usuario.accessToken}`,
-          },
-          credentials: "include",
-        });
-
-        if (!response.ok) throw new Error("Erro ao buscar hotéis");
-
-        const result = await response.json();
-        setHoteis(result);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (!isLoading && usuario) {
-      fetchHoteis();
-    }
-  }, [usuario, isLoading]);
-
-  const handleEdit = (id: number) => {
-    navigate(ROUTES.EDITAR_HOTEL.replace(":id", String(id)));
-  };
-
-  const handleDelete = async (id: number) => {
-    if (!window.confirm("Deseja realmente excluir este hotel?")) return;
-
+    setLoading(true);
     try {
-      const response = await fetch(`/api/hotel/${id}`, { method: "DELETE" });
+      const response = await fetch("/api/hotel", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${usuario.accessToken}`,
+        },
+        credentials: "include",
+      });
 
-      if (response.ok) {
-        alert("Hotel excluído com sucesso!");
-        fetchHoteis();
-      } else {
-        const msg = await response.text();
-        alert(`Erro: ${msg}`);
-      }
+      if (!response.ok) throw new Error("Erro ao buscar hotéis");
+
+      const result = await response.json();
+      setHoteis(result);
     } catch (error) {
-      alert("Erro de conexão ao tentar excluir.");
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const hotelActions = [
-    {
-      name: "Editar",
-      colorClass: "text-blue-600 hover:text-blue-900",
-      handler: handleEdit,
-    },
-    {
-      name: "Excluir",
-      colorClass: "text-red-600 hover:text-red-900",
-      handler: handleDelete,
-    },
-  ];
+  useEffect(() => {
+    if (!isLoading && usuario) {
+      fetchHoteis();
+    }
+  }, [usuario, isLoading]);
 
-  return (
-    <DataList<Hotel>
-      loading={loading}
-      pageTitle="Gerenciar Hotéis"
-      buttonText="Novo Hotel"
-      registerPath={ROUTES.REGISTRAR_HOTEL}
-      data={hoteis}
-      headers={hotelHeaders}
-      dataKeys={hotelKeys}
-      renderValue={renderHotelValue}
-      actions={hotelActions}
-    />
-  );
+  const handleEdit = (id: number) => {
+    navigate(ROUTES.EDITAR_HOTEL.replace(":id", String(id)));
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!usuario || !usuario.accessToken) return;
+    if (!window.confirm("Deseja realmente excluir este hotel?")) return;
+
+    try {
+      const response = await fetch(`/api/hotel/${id}`, { 
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${usuario.accessToken}`,
+        },
+      });
+
+      if (response.ok) {
+        alert("Hotel excluído com sucesso!");
+        fetchHoteis();
+      } else {
+        const msg = await response.text();
+        alert(`Erro: ${msg}`);
+      }
+    } catch (error) {
+      alert("Erro de conexão ao tentar excluir.");
+    }
+  };
+
+  const hotelActions = [
+    {
+      name: "Editar",
+      colorClass: "bg-blue-700 text-white hover:bg-blue-500 p-2 rounded-md transition-colors",
+      handler: handleEdit,
+    },
+    {
+      name: "Excluir",
+      colorClass: "bg-red-600 text-white hover:bg-red-500 p-2 rounded-md transition-colors",
+      handler: handleDelete,
+    },
+  ];
+
+  return (
+    <DataList<Hotel>
+      loading={loading}
+      pageTitle="Gerenciar Hotéis"
+      buttonText="Novo Hotel"
+      registerPath={ROUTES.REGISTRAR_HOTEL}
+      data={hoteis}
+      headers={hotelHeaders}
+      dataKeys={hotelKeys}
+      renderValue={renderHotelValue}
+      actions={hotelActions}
+    />
+  );
 }

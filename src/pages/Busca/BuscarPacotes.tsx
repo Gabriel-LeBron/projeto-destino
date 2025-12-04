@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import PacoteCard, { type Pacote } from "@/components/busca/PacoteCard";
 import logo from "/icon.png";
+
 import { FaChevronLeft, FaChevronRight, FaMoneyCheckAlt } from "react-icons/fa";
 import { MdOutlineTravelExplore } from "react-icons/md";
 import { PiPackageBold } from "react-icons/pi";

@@ -4,6 +4,7 @@ import placeholder from "/placeholder.jpg";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useState, useEffect } from "react";
+
 import { MdOutlineTravelExplore } from "react-icons/md";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 

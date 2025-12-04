@@ -2,24 +2,21 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import logo from "/icon.png";
+
 import { BiSolidPieChartAlt2 } from "react-icons/bi";
 import { IoIosArrowDropupCircle } from "react-icons/io";
-import { FaUserCog } from "react-icons/fa";
-import { FaMapMarkedAlt } from "react-icons/fa";
+import { FaUserCog, FaMapMarkedAlt } from "react-icons/fa";
+import { FaHotel, FaTruckPlane } from "react-icons/fa6";
 import { HiMiniCamera } from "react-icons/hi2";
-import { FaHotel } from "react-icons/fa6";
-import { FaTruckPlane } from "react-icons/fa6";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Estado para controlar o dropdown de Administração
   const [isAdminOpen, setIsAdminOpen] = useState(true);
 
   const isActive = (path: string) => location.pathname === path;
 
-  // Função auxiliar para estilos
   const linkClass = (path: string, isSubItem = false) => `
     w-full text-left px-4 py-2 rounded-lg font-medium transition-colors mb-1
     ${isSubItem ? "text-sm pl-8" : ""}

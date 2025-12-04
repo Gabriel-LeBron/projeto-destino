@@ -1,7 +1,7 @@
 import logo from "/icon.png";
+
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { MdEmail } from "react-icons/md";
-import { MdPlace } from "react-icons/md";
+import { MdEmail, MdPlace } from "react-icons/md";
 import { FaFacebookSquare } from "react-icons/fa";
 import { PiInstagramLogoFill } from "react-icons/pi";
 

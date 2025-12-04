@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROUTES } from "@/paths";
 import { useSession } from "@/store/sessionStore";
+
+import { FaMoneyCheckAlt } from "react-icons/fa";
 import { FaTruckPlane } from "react-icons/fa6";
 import { TbBuildingAirport } from "react-icons/tb";
-import { MdLocalShipping } from "react-icons/md";
-import { FaMoneyCheckAlt } from "react-icons/fa";
-import { MdOutlineAirplanemodeInactive } from "react-icons/md";
-import { MdOutlineAirplanemodeActive } from "react-icons/md";
+import { MdLocalShipping, MdOutlineAirplanemodeInactive, MdOutlineAirplanemodeActive } from "react-icons/md";
 
 export default function RegistrarTransporte() {
   const navigate = useNavigate();
@@ -150,7 +149,7 @@ export default function RegistrarTransporte() {
         <div className="flex justify-end gap-2 mt-6">
           <button
             onClick={() => navigate(-1)}
-            className="px-4 py-2 rounded font-medium bg-blue-600 text-white hover:bg-red-700 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 rounded font-medium bg-red-600 text-white hover:bg-red-500 transition-colors flex items-center space-x-2"
           >
             <MdOutlineAirplanemodeInactive className="text-lg" />
             <span>Cancelar</span>
@@ -158,7 +157,7 @@ export default function RegistrarTransporte() {
 
           <button
             onClick={handleSalvar}
-            className="px-4 py-2 rounded font-medium bg-blue-600 text-white hover:bg-green-700 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 rounded font-medium bg-blue-700 text-white hover:bg-blue-500 transition-colors flex items-center space-x-2"
           >
             <MdOutlineAirplanemodeActive className="text-lg" />
             <span>Salvar</span>
